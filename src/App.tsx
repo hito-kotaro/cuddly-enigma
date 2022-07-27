@@ -1,13 +1,16 @@
 import React from 'react';
+import { BrowserRouter } from 'react-router-dom';
+import { RecoilRoot } from 'recoil';
 import './App.css';
+import Router from './routes/Router';
 
 const App = () => {
   return (
-    <div>
-      <h1 className="text-lg bg-base border-1">LoginPage</h1>
-      <div className="bg-primary">Button</div>
-      <div className="bg-secondary">Button</div>
-    </div>
+    <BrowserRouter>
+      <RecoilRoot>
+        <Router />
+      </RecoilRoot>
+    </BrowserRouter>
   );
 };
 
