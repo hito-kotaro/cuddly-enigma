@@ -26,7 +26,14 @@ const useLogin = () => {
     }
   };
 
-  return { login };
+  const logout = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('id');
+    navigate('/');
+    toast.success('logout');
+  };
+
+  return { login, logout };
 };
 
 export default useLogin;

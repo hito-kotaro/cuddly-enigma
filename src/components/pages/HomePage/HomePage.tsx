@@ -1,17 +1,14 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import useLogin from '../../../hooks/useLogin';
+import Button from '../../atoms/Button/Button';
 
 const HomePage = () => {
-  const navigate = useNavigate();
-
-  const onClick = () => {
-    navigate('/');
-  };
+  const { logout } = useLogin();
 
   return (
-    <button type="button" onClick={onClick} className="bg-primary text-base">
-      To Login
-    </button>
+    <Button onClick={logout} isEnable>
+      logout
+    </Button>
   );
 };
 
