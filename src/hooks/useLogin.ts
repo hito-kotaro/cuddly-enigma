@@ -1,4 +1,5 @@
 import { AxiosResponse } from 'axios';
+import { toast } from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import { axiosInstance } from '../libs/axiosInstance';
 import useAuthState from '../stores/AuthState/useAuthState';
@@ -19,8 +20,9 @@ const useLogin = () => {
       setIsLoading(false);
       setIsAuth(true);
       navigate('/home');
+      toast.success('welcome');
     } catch (error) {
-      alert('ログイン失敗');
+      toast.error('login failed');
     }
   };
 
