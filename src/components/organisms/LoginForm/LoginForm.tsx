@@ -1,5 +1,6 @@
 import React, { useEffect, useState, VFC } from 'react';
 import useLogin from '../../../hooks/useLogin';
+import { loginParams } from '../../../types/ApiParams/loginParams';
 import Button from '../../atoms/Button/Button';
 import Input from '../../atoms/Input/Input';
 import { InputHandlerType } from '../../atoms/Input/types/InputHandlerType';
@@ -16,7 +17,7 @@ const LoginForm: VFC<Props> = (props) => {
   const [isReady, setIsReady] = useState(false);
 
   const execLogin = () => {
-    const params = {
+    const params: loginParams = {
       name: nameInputHandler.value,
       password: passInputHandler.value,
       isBank,
