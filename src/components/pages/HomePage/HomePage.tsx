@@ -1,15 +1,8 @@
 import React from 'react';
-import useLogin from '../../../hooks/useLogin';
-import Button from '../../atoms/Button/Button';
+import HomeTemplate from './templates/HomeTemplate';
 
 const HomePage = () => {
-  const { logout } = useLogin();
-
-  return (
-    <Button onClick={logout} isEnable>
-      logout
-    </Button>
-  );
+  return <HomeTemplate />;
 };
 
 export default HomePage;
