@@ -1,18 +1,8 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import HomeTemplate from './templates/HomeTemplate';
 
 const HomePage = () => {
-  const navigate = useNavigate();
-
-  const onClick = () => {
-    navigate('/');
-  };
-
-  return (
-    <button type="button" onClick={onClick} className="bg-primary text-base">
-      To Login
-    </button>
-  );
+  return <HomeTemplate />;
 };
 
 export default HomePage;

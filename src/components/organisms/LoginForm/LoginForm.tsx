@@ -1,8 +1,7 @@
 import React, { useEffect, useState, VFC } from 'react';
+import { Button, TextField } from '@mui/material';
 import useLogin from '../../../hooks/useLogin';
 import { loginParams } from '../../../types/ApiParams/loginParams';
-import Button from '../../atoms/Button/Button';
-import Input from '../../atoms/Input/Input';
 import { InputHandlerType } from '../../atoms/Input/types/InputHandlerType';
 
 type Props = {
@@ -14,7 +13,7 @@ type Props = {
 const LoginForm: VFC<Props> = (props) => {
   const { isBank, nameInputHandler, passInputHandler } = props;
   const { login } = useLogin();
-  const [isReady, setIsReady] = useState(false);
+  const [isDisable, setIsDisable] = useState(false);
 
   const execLogin = () => {
     const params: loginParams = {
@@ -22,15 +21,14 @@ const LoginForm: VFC<Props> = (props) => {
       password: passInputHandler.value,
       isBank,
     };
-
     login(params);
   };
 
   const validateInput = () => {
-    if (nameInputHandler.value !== '' && passInputHandler.value !== '') {
-      setIsReady(true);
+    if (nameInputHandler.value === '' || passInputHandler.value === '') {
+      setIsDisable(true);
     } else {
-      setIsReady(false);
+      setIsDisable(false);
     }
   };
 
@@ -44,26 +42,32 @@ const LoginForm: VFC<Props> = (props) => {
         <div className="text-lg text-center text-gray-500">
           {isBank ? '銀行アカウントでログイン' : 'ユーザーアカウントでログイン'}
         </div>
+
         <div className="h-5" />
         <div className="flex mx-auto w-11/12">
-          <Input
-            type="text"
-            inputHandler={nameInputHandler}
-            placeholder="name"
+          <TextField
+            fullWidth
+            label="name"
+            variant="outlined"
+            onChange={nameInputHandler.onChange}
+            value={nameInputHandler.value}
           />
         </div>
         <div className="h-5" />
         <div className="flex mx-auto w-11/12">
-          <Input
+          <TextField
+            fullWidth
             type="password"
-            inputHandler={passInputHandler}
-            placeholder="password"
+            label="password"
+            variant="outlined"
+            onChange={passInputHandler.onChange}
+            value={passInputHandler.value}
           />
         </div>
       </div>
-      <div className="h-10" />
-      <div className="w-11/12 mx-auto text-white text-lg">
-        <Button onClick={execLogin} isEnable={isReady}>
+      <div className="h-8" />
+      <div className="flex justify-center w-11/12 mx-auto">
+        <Button variant="contained" onClick={execLogin} disabled={isDisable}>
           Login
         </Button>
       </div>
