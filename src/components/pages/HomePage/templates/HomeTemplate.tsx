@@ -1,4 +1,6 @@
 import React from 'react';
+import { Paper, BottomNavigation, BottomNavigationAction } from '@mui/material';
+import { BsFlower1 } from 'react-icons/bs';
 import { toast } from 'react-hot-toast';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
@@ -8,8 +10,9 @@ import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography/Typography';
 import UserCard from '../../../atoms/UserCard/UserCard';
-import MenuButton from '../../../atoms/MenuButton/MenuButton';
-import HeaderLogo from '../../../atoms/HeaderLogo/HeaderLogo';
+import HomeHeader from '../../../organisms/HomeHeader/HomeHeader';
+import { ListData } from '../../../../dev/TestData';
+import { ListType } from '../../../../types/ListType/ListType';
 
 const HomeTemplate = () => {
   const dummy = () => {
@@ -18,14 +21,7 @@ const HomeTemplate = () => {
 
   return (
     <>
-      <div className="border-b-1 flex p-1">
-        <div>
-          <HeaderLogo />
-        </div>
-        <div className="ml-auto">
-          <MenuButton />
-        </div>
-      </div>
+      <HomeHeader />
       <div className="h-5" />
       <div className="flex justify-center">
         <UserCard name="Tohi" hmt={10.11} />
@@ -36,53 +32,44 @@ const HomeTemplate = () => {
         <List
           sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
         >
-          <ListItem alignItems="flex-start" onClick={dummy}>
-            <ListItemAvatar>
-              <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
-            </ListItemAvatar>
-            <ListItemText
-              primary="洗濯物干し"
-              secondary={
-                <>
-                  <Typography
-                    sx={{ display: 'inline' }}
-                    component="span"
-                    variant="body2"
-                    color="text.primary"
-                  >
-                    10.00hmt
-                  </Typography>
-                  {' — 取り込みまでお願いします'}
-                </>
-              }
-            />
-          </ListItem>
-          <Divider variant="inset" component="li" />
-          <ListItem alignItems="flex-start" onClick={dummy}>
-            <ListItemAvatar>
-              <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
-            </ListItemAvatar>
-            <ListItemText
-              primary="洗濯物干し"
-              secondary={
-                <>
-                  <Typography
-                    sx={{ display: 'inline' }}
-                    component="span"
-                    variant="body2"
-                    color="text.primary"
-                  >
-                    10.00hmt
-                  </Typography>
-                  {
-                    ' — 取り込みまでお願いします取り込みまでお願いします取り込みまでお願いします取り込みまでお願いします取り込みまでお願いします'
+          {ListData.map((l: ListType) => (
+            <>
+              <ListItem key={l.id} alignItems="flex-start" onClick={dummy}>
+                <ListItemAvatar>
+                  <Avatar alt={l.name} src="/static/images/avatar/1.jpg" />
+                </ListItemAvatar>
+                <ListItemText
+                  primary={l.primary}
+                  secondary={
+                    <>
+                      <Typography
+                        sx={{ display: 'inline' }}
+                        component="span"
+                        variant="body2"
+                        color="text.primary"
+                      >
+                        {`${l.reward}HMT`}
+                      </Typography>
+                      {` - ${l.secondary}`}
+                    </>
                   }
-                </>
-              }
-            />
-          </ListItem>
+                />
+              </ListItem>
+              <Divider variant="inset" component="li" />
+            </>
+          ))}
         </List>
       </div>
+      <Paper
+        sx={{ position: 'fixed', bottom: 0, left: 0, right: 0 }}
+        elevation={3}
+      >
+        <BottomNavigation showLabels>
+          <BottomNavigationAction label="Recents" icon={<BsFlower1 />} />
+          <BottomNavigationAction label="Favorites" icon={<BsFlower1 />} />
+          <BottomNavigationAction label="Archive" icon={<BsFlower1 />} />
+        </BottomNavigation>
+      </Paper>
     </>
   );
 };

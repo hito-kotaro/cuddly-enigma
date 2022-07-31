@@ -12,9 +12,10 @@ const LoginPage = () => {
   return (
     <>
       <LoginTemplate isBank={isBank} />
+      <div className="h-5" />
       <div className="flex justify-center">
         <LinkButton onClick={toggleLoginMode}>
-          銀行アカウントでログイン
+          {isBank ? 'ユーザーアカウントでログイン' : '銀行アカウントでログイン'}
         </LinkButton>
       </div>
     </>
