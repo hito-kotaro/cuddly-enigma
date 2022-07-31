@@ -1,6 +1,4 @@
 import React from 'react';
-import { Paper, BottomNavigation, BottomNavigationAction } from '@mui/material';
-import { BsFlower1 } from 'react-icons/bs';
 import { toast } from 'react-hot-toast';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
@@ -13,6 +11,7 @@ import UserCard from '../../../atoms/UserCard/UserCard';
 import HomeHeader from '../../../organisms/HomeHeader/HomeHeader';
 import { ListData } from '../../../../dev/TestData';
 import { ListType } from '../../../../types/ListType/ListType';
+import Footer from '../../../organisms/Footer/Footer';
 
 const HomeTemplate = () => {
   const dummy = () => {
@@ -60,16 +59,7 @@ const HomeTemplate = () => {
           ))}
         </List>
       </div>
-      <Paper
-        sx={{ position: 'fixed', bottom: 0, left: 0, right: 0 }}
-        elevation={3}
-      >
-        <BottomNavigation showLabels>
-          <BottomNavigationAction label="Recents" icon={<BsFlower1 />} />
-          <BottomNavigationAction label="Favorites" icon={<BsFlower1 />} />
-          <BottomNavigationAction label="Archive" icon={<BsFlower1 />} />
-        </BottomNavigation>
-      </Paper>
+      <Footer />
     </>
   );
 };
