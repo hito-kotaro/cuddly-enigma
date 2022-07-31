@@ -9,6 +9,13 @@ module.exports = {
         primary: '#00C800',
         secondary: '#9A9B9C',
       },
+      spacing: {
+        '70%': '70vh',
+        '75%': '75vh',
+        '95%': '95vh',
+        lvh: '100lvh',
+        dvh: '100dvh',
+      },
       borderWidth: {
         1: '1px',
       },
