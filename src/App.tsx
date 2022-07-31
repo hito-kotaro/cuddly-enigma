@@ -7,12 +7,14 @@ import Router from './routes/Router';
 
 const App = () => {
   return (
-    <BrowserRouter>
-      <RecoilRoot>
-        <Toaster position="bottom-right" reverseOrder={false} />
-        <Router />
-      </RecoilRoot>
-    </BrowserRouter>
+    <>
+      <BrowserRouter>
+        <RecoilRoot>
+          <Toaster position="bottom-right" reverseOrder={false} />
+          <Router />
+        </RecoilRoot>
+      </BrowserRouter>
+    </>
   );
 };
 
