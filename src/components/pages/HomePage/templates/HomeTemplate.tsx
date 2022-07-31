@@ -12,6 +12,7 @@ import HomeHeader from '../../../organisms/HomeHeader/HomeHeader';
 import { ListData } from '../../../../dev/TestData';
 import { ListType } from '../../../../types/ListType/ListType';
 import Footer from '../../../organisms/Footer/Footer';
+import PrimaryListItem from '../../../atoms/PrimaryListItem/PrimaryListItem';
 
 const HomeTemplate = () => {
   const dummy = () => {
@@ -25,35 +26,22 @@ const HomeTemplate = () => {
       <div className="flex justify-center">
         <UserCard name="Tohi" hmt={10.11} />
       </div>
-      <div className="h-10" />
+      <div className="h-1" />
 
-      <div className=" h-80 overflow-y-scroll ">
+      <div className=" h-80 overflow-y-scroll">
         <List
           sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
         >
           {ListData.map((l: ListType) => (
             <>
-              <ListItem key={l.id} alignItems="flex-start" onClick={dummy}>
-                <ListItemAvatar>
-                  <Avatar alt={l.name} src="/static/images/avatar/1.jpg" />
-                </ListItemAvatar>
-                <ListItemText
-                  primary={l.primary}
-                  secondary={
-                    <>
-                      <Typography
-                        sx={{ display: 'inline' }}
-                        component="span"
-                        variant="body2"
-                        color="text.primary"
-                      >
-                        {`${l.reward}HMT`}
-                      </Typography>
-                      {` - ${l.secondary}`}
-                    </>
-                  }
-                />
-              </ListItem>
+              <PrimaryListItem
+                key={l.id}
+                name={l.name}
+                title={l.primary}
+                reward={l.reward}
+                description={l.secondary}
+                onClick={dummy}
+              />
               <Divider variant="inset" component="li" />
             </>
           ))}
