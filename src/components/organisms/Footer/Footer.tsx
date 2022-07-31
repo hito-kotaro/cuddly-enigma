@@ -1,13 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Paper, BottomNavigation, BottomNavigationAction } from '@mui/material';
 import { BsFlower1 } from 'react-icons/bs';
+import { useNavigate } from 'react-router-dom';
 
 const Footer = () => {
   const [value, setValue] = useState();
+  const navigate = useNavigate();
 
-  useEffect(() => {
-    console.log(value);
-  }, [value]);
+  const onChange = (path: string) => {
+    navigate(path);
+  };
 
   return (
     <Paper
@@ -17,14 +19,18 @@ const Footer = () => {
       <BottomNavigation
         showLabels
         onChange={(event, newValue) => {
-          setValue(newValue);
+          onChange(newValue);
         }}
       >
-        <BottomNavigationAction label="ホーム" icon={<BsFlower1 />} value="a" />
+        <BottomNavigationAction
+          label="ホーム"
+          icon={<BsFlower1 />}
+          value="/home"
+        />
         <BottomNavigationAction
           label="依頼発行"
           icon={<BsFlower1 />}
-          value="b"
+          value="/request"
         />
         <BottomNavigationAction label="" icon={<BsFlower1 />} value="c" />
       </BottomNavigation>
