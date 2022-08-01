@@ -2,17 +2,19 @@
   text-align: center;
 }
 
-.display {
+/* .display {
   --tw-translate-x: 0px;
   transform: var(--tw-transform);
+  transition-duration: 500ms;
   opacity: 1;
 }
 
 .hidden {
   --tw-translate-x: -100%;
   transform: var(--tw-transform);
+  transition-duration: 500ms;
   opacity: 0;
-}
+} */
 
 .switch-components {
   width: 100vw;

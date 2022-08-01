@@ -14,7 +14,7 @@ const HomeTemplate = () => {
 
   return (
     <div>
-      <div className="h-5" />
+      {/* <div className="h-5" /> */}
       <div className="flex justify-center">
         <UserCard name="Tohi" hmt={10.11} />
       </div>
@@ -37,7 +37,6 @@ const HomeTemplate = () => {
           ))}
         </List>
       </div>
-      <div className="h-14" />
     </div>
   );
 };
