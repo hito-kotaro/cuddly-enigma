@@ -23,10 +23,8 @@ const HomeTemplate = () => {
       </div>
       <div className="h-1" />
 
-      <div className=" h-80 overflow-y-scroll">
-        <List
-          sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
-        >
+      <div className=" h-80 overflow-y-scroll shadow-xl">
+        <List sx={{ width: '100%', bgcolor: 'background.paper' }}>
           {ListData.map((l: ListType) => (
             <>
               <PrimaryListItem

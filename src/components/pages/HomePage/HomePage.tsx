@@ -5,7 +5,7 @@ import HomeTemplate from './templates/HomeTemplate';
 const HomePage = () => {
   const { isSafari } = useUserAgentState();
   return (
-    <div className={`bg-red-200 ${isSafari}`}>
+    <div className={`${isSafari}`}>
       <HomeTemplate />
     </div>
   );

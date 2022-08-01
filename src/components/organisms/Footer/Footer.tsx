@@ -7,8 +7,8 @@ const Footer = () => {
   const [value, setValue] = useState();
   const navigate = useNavigate();
 
-  const onChange = (path: string) => {
-    navigate(path);
+  const onChange = (template: string) => {
+    console.log(template);
   };
 
   return (
@@ -25,12 +25,12 @@ const Footer = () => {
         <BottomNavigationAction
           label="ホーム"
           icon={<BsFlower1 />}
-          value="/home"
+          value="home"
         />
         <BottomNavigationAction
           label="依頼発行"
           icon={<BsFlower1 />}
-          value="/request"
+          value="request"
         />
         <BottomNavigationAction label="" icon={<BsFlower1 />} value="c" />
       </BottomNavigation>
