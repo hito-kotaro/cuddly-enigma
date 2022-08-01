@@ -2,6 +2,27 @@
   text-align: center;
 }
 
+.display {
+  --tw-translate-x: 0px;
+  transform: var(--tw-transform);
+  opacity: 1;
+}
+
+.hidden {
+  --tw-translate-x: -100%;
+  transform: var(--tw-transform);
+  opacity: 0;
+}
+
+.switch-components {
+  width: 100vw;
+  overflow: scroll;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition-duration: 500ms;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
