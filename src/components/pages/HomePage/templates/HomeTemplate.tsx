@@ -1,20 +1,20 @@
-import React from 'react';
-import { toast } from 'react-hot-toast';
+import React, { VFC } from 'react';
 import List from '@mui/material/List';
 import Divider from '@mui/material/Divider';
 import UserCard from '../../../atoms/UserCard/UserCard';
-import { ListData } from '../../../../dev/TestData';
-import { ListType } from '../../../../types/ListType/ListType';
 import PrimaryListItem from '../../../atoms/PrimaryListItem/PrimaryListItem';
+import { requestType } from '../../../../types/Request/requestType';
 
-const HomeTemplate = () => {
-  const dummy = () => {
-    toast.success('welcome');
-  };
+type Props = {
+  requests: requestType[];
+  onClick: (id: number) => void;
+};
 
+const HomeTemplate: VFC<Props> = (props) => {
+  const { requests, onClick } = props;
   return (
     <div>
-      {/* <div className="h-5" /> */}
+      <div className="h-5" />
       <div className="flex justify-center">
         <UserCard name="Tohi" hmt={10.11} />
       </div>
@@ -22,15 +22,15 @@ const HomeTemplate = () => {
 
       <div className="shadow-xl">
         <List sx={{ width: '100%', bgcolor: 'background.paper' }}>
-          {ListData.map((l: ListType) => (
+          {requests.map((r: requestType) => (
             <>
               <PrimaryListItem
-                key={l.id}
-                name={l.name}
-                title={l.primary}
-                reward={l.reward}
-                description={l.secondary}
-                onClick={dummy}
+                id={r.id}
+                name={r.owner}
+                title={r.title}
+                reward={r.reward}
+                description={r.description}
+                onClick={onClick}
               />
               <Divider variant="inset" component="li" />
             </>

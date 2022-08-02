@@ -8,18 +8,19 @@ import {
 import React, { VFC } from 'react';
 
 type Props = {
-  key: number;
+  id: number;
   name: string;
   title: string;
   reward: number;
   description: string;
-  onClick: () => void;
+  onClick: (id: number) => void;
 };
 
 const PrimaryListItem: VFC<Props> = (props) => {
-  const { key, name, title, reward, description, onClick } = props;
+  const { id, name, title, reward, description, onClick } = props;
+
   return (
-    <ListItem key={key} alignItems="flex-start" onClick={onClick}>
+    <ListItem key={id} alignItems="flex-start" onClick={() => onClick(id)}>
       <ListItemAvatar>
         <Avatar alt={name} src="/static/images/avatar/1.jpg" />
       </ListItemAvatar>

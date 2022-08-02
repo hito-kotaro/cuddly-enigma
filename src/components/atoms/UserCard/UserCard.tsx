@@ -10,7 +10,7 @@ type Props = {
 const UserCard: VFC<Props> = (props) => {
   const { name, hmt } = props;
   return (
-    <div className="w-11/12 h-40 rounded-lg shadow-xl p-2">
+    <div className="w-11/12 h-40 rounded-lg p-2 ring-1 ring-black ring-opacity-10 ">
       <Avatar alt={name} src="/static/images/avatar/1.jpg" />
       <div className="h-3" />
       <div className="text-center">
