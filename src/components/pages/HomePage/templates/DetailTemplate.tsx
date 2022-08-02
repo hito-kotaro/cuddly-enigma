@@ -2,9 +2,6 @@ import React, { VFC } from 'react';
 import Button from '@mui/material/Button/Button';
 import { IoChevronBack } from 'react-icons/io5';
 import { requestType } from '../../../../types/Request/requestType';
-import NameLabel from '../../../molecules/NameLabel/NameLabel';
-import RewardDisplay from '../../../molecules/RewardDisplay/RewardDisplay';
-import HanamaruButton from '../../../atoms/Button/HanamaruButton/HanamaruButton';
 import RequestCard from '../../../organisms/RequestCard/RequestCard';
 
 type Props = { detail: requestType; close: () => void };
