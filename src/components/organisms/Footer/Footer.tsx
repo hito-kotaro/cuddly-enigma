@@ -1,29 +1,30 @@
-import React, { useState, VFC } from 'react';
+import React, { VFC } from 'react';
 import { Paper, BottomNavigation, BottomNavigationAction } from '@mui/material';
 import { BsFlower1 } from 'react-icons/bs';
-import { useNavigate } from 'react-router-dom';
 import { templateType } from '../../../types/Template/templateType';
 
 type Props = {
+  detailTemplate: templateType;
   homeTemplate: templateType;
   requestTemplate: templateType;
 };
 
 const Footer: VFC<Props> = (props) => {
-  const { requestTemplate, homeTemplate } = props;
+  const { detailTemplate, homeTemplate, requestTemplate } = props;
 
   const onChange = (template: string) => {
     switch (template) {
       case 'home':
         homeTemplate.open();
+        detailTemplate.close();
         requestTemplate.close();
         break;
       case 'request':
         homeTemplate.close();
+        detailTemplate.close();
         requestTemplate.open();
         break;
       default:
-        console.log('ha?');
         break;
     }
   };

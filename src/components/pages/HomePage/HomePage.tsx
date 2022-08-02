@@ -68,7 +68,11 @@ const HomePage = () => {
       </div>
 
       <div>
-        <Footer requestTemplate={requestTemplate} homeTemplate={homeTemplate} />
+        <Footer
+          requestTemplate={requestTemplate}
+          homeTemplate={homeTemplate}
+          detailTemplate={detailTemplate}
+        />
       </div>
     </div>
   );
