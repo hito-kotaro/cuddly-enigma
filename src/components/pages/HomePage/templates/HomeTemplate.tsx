@@ -20,7 +20,7 @@ const HomeTemplate: VFC<Props> = (props) => {
       </div>
       <div className="h-5" />
 
-      <div className=" h-auto ring-1 ring-black ring-opacity-10 ">
+      <div className="shadow-xl">
         <List sx={{ width: '100%', bgcolor: 'background.paper' }}>
           {requests.map((r: requestType) => (
             <>
