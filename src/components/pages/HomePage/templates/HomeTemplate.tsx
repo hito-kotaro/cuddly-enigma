@@ -35,6 +35,7 @@ const HomeTemplate: VFC<Props> = (props) => {
               <Divider variant="inset" component="li" />
             </>
           ))}
+          <div className="h-12" />
         </List>
       </div>
     </div>
