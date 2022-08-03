@@ -14,8 +14,8 @@ const HomePage = () => {
   const homeTemplate = useTemplate();
   const detailTemplate = useTemplate();
   const requestTemplate = useTemplate();
-  const display = 'absolute w-full translate-x-0 opacity-100';
-  const hidden = 'absolute w-full -translate-x-full opacity-0 h-1';
+  const display = ' w-full translate-x-0 opacity-100 duration-1000';
+  const hidden = 'w-full -translate-x-full opacity-0 h-1 duration-100';
   const [detail, setDetail] = useState<requestType>({
     id: 0,
     title: '',
@@ -49,21 +49,15 @@ const HomePage = () => {
     <div className={`${isSafari} overflow-scroll`}>
       <HomeHeader />
 
-      <div
-        className={` ${homeTemplate.isOpen ? display : hidden} duration-1000`}
-      >
+      <div className={` ${homeTemplate.isOpen ? display : hidden} `}>
         <HomeTemplate onClick={onClickListItem} requests={requests} />
       </div>
 
-      <div
-        className={`${detailTemplate.isOpen ? display : hidden} duration-1000`}
-      >
+      <div className={`${detailTemplate.isOpen ? display : hidden} `}>
         <DetailTemplate detail={detail} close={closeDetail} />
       </div>
 
-      <div
-        className={`${requestTemplate.isOpen ? display : hidden} duration-1000`}
-      >
+      <div className={`${requestTemplate.isOpen ? display : hidden} `}>
         <RequestTemplate />
       </div>
 
