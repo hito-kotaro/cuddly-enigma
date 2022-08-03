@@ -7,10 +7,11 @@ type Props = {
   detailTemplate: templateType;
   homeTemplate: templateType;
   requestTemplate: templateType;
+  listTemplate: templateType;
 };
 
 const Footer: VFC<Props> = (props) => {
-  const { detailTemplate, homeTemplate, requestTemplate } = props;
+  const { detailTemplate, homeTemplate, requestTemplate, listTemplate } = props;
 
   const onChange = (template: string) => {
     switch (template) {
@@ -18,11 +19,19 @@ const Footer: VFC<Props> = (props) => {
         homeTemplate.open();
         detailTemplate.close();
         requestTemplate.close();
+        listTemplate.close();
         break;
       case 'request':
         homeTemplate.close();
         detailTemplate.close();
         requestTemplate.open();
+        listTemplate.close();
+        break;
+      case 'list':
+        homeTemplate.close();
+        detailTemplate.close();
+        requestTemplate.close();
+        listTemplate.open();
         break;
       default:
         break;
@@ -45,12 +54,24 @@ const Footer: VFC<Props> = (props) => {
           icon={<BsFlower1 />}
           value="home"
         />
+
         <BottomNavigationAction
-          label="依頼発行"
+          label="一覧"
+          icon={<BsFlower1 />}
+          value="list"
+        />
+
+        <BottomNavigationAction
+          label="発行"
           icon={<BsFlower1 />}
           value="request"
         />
-        <BottomNavigationAction label="" icon={<BsFlower1 />} value="c" />
+
+        <BottomNavigationAction
+          label="承認"
+          icon={<BsFlower1 />}
+          value="request"
+        />
       </BottomNavigation>
     </Paper>
   );

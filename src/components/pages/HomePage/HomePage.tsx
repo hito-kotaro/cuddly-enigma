@@ -8,11 +8,13 @@ import RequestTemplate from './templates/RequestTemplate';
 import { requestType } from '../../../types/Request/requestType';
 import { requests } from '../../../dev/TestData/requests';
 import DetailTemplate from './templates/DetailTemplate';
+import ListTemplate from './templates/ListTemplate';
 
 const HomePage = () => {
   const { isSafari } = useUserAgentState();
   const homeTemplate = useTemplate();
   const detailTemplate = useTemplate();
+  const listTemplate = useTemplate();
   const requestTemplate = useTemplate();
   const display = ' w-full translate-x-0 opacity-100 duration-1000';
   const hidden = 'w-full -translate-x-full opacity-0 h-1 duration-500';
@@ -41,6 +43,7 @@ const HomePage = () => {
     detailTemplate.close();
     homeTemplate.open();
   };
+
   useEffect(() => {
     homeTemplate.open();
   }, []);
@@ -49,16 +52,16 @@ const HomePage = () => {
     <div className={`${isSafari} overflow-scroll`}>
       <HomeHeader />
 
-      <div
-        className={` ${homeTemplate.isOpen ? display : hidden} duration-1000`}
-      >
+      <div className={` ${homeTemplate.isOpen ? display : hidden} `}>
         <HomeTemplate onClick={onClickListItem} requests={requests} />
       </div>
 
-      <div
-        className={`${detailTemplate.isOpen ? display : hidden} duration-1000`}
-      >
+      <div className={`${detailTemplate.isOpen ? display : hidden} `}>
         <DetailTemplate detail={detail} close={closeDetail} />
+      </div>
+
+      <div className={`${listTemplate.isOpen ? display : hidden} `}>
+        <ListTemplate />
       </div>
 
       <div
@@ -72,6 +75,7 @@ const HomePage = () => {
           requestTemplate={requestTemplate}
           homeTemplate={homeTemplate}
           detailTemplate={detailTemplate}
+          listTemplate={listTemplate}
         />
       </div>
     </div>
