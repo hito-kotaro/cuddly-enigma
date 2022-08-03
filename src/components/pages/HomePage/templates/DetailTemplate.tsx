@@ -13,7 +13,7 @@ const DetailTemplate: VFC<Props> = (props) => {
   };
 
   return (
-    <div className="px-2">
+    <div className="px-3">
       <div className="border-b-1  border-gray-300">
         <Button onClick={close} startIcon={<IoChevronBack />}>
           BACK
@@ -21,6 +21,7 @@ const DetailTemplate: VFC<Props> = (props) => {
       </div>
 
       <div className="h-5" />
+
       <RequestCard
         owner={detail.owner}
         title={detail.title}
@@ -28,12 +29,17 @@ const DetailTemplate: VFC<Props> = (props) => {
         gas={gas}
         onClick={onClick}
       />
+
       <div className="h-5" />
 
       <div className="h-5" />
 
       <div className="h-56 p-2 ring-1 ring-black ring-opacity-10">
-        <p>{detail.description}</p>
+        <p className="text-gray-500">
+          {detail.description === ''
+            ? 'コメントはありません'
+            : detail.description}
+        </p>
       </div>
     </div>
   );

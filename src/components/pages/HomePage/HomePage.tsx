@@ -15,7 +15,7 @@ const HomePage = () => {
   const detailTemplate = useTemplate();
   const requestTemplate = useTemplate();
   const display = ' w-full translate-x-0 opacity-100 duration-1000';
-  const hidden = 'w-full -translate-x-full opacity-0 h-1 duration-100';
+  const hidden = 'w-full -translate-x-full opacity-0 h-1 duration-500';
   const [detail, setDetail] = useState<requestType>({
     id: 0,
     title: '',

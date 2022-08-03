@@ -50,7 +50,9 @@ const RequestTemplate = () => {
 
   return (
     <div className="px-2">
-      <div className="h-10" />
+      <div className="h-3" />
+      <div>依頼を発行する</div>
+      <div className="h-3" />
 
       <div>
         <Grid container spacing={2}>
@@ -75,7 +77,7 @@ const RequestTemplate = () => {
         </Grid>
       </div>
 
-      <div className="h-5" />
+      <div className="h-5 px-3" />
 
       <Autocomplete
         disablePortal

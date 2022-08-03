@@ -28,7 +28,7 @@ const RequestCard: VFC<Props> = (props) => {
 
       <div className="h-3" />
 
-      <div className="flex px-5">
+      <div className="flex">
         <HanamaruButton label="done" onClick={onClick} />
         <div className="ml-auto">
           <RewardDisplay reward={reward} gas={gas} />
