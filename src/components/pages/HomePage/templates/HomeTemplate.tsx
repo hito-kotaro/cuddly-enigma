@@ -18,6 +18,7 @@ const HomeTemplate: VFC<Props> = (props) => {
       </div>
       <div className="h-5" />
       <RequestList requests={requests} onClick={onClick} />
+      <div className="h-40" />
     </div>
   );
 };
