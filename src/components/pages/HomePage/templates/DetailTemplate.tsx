@@ -3,11 +3,13 @@ import Button from '@mui/material/Button/Button';
 import { IoChevronBack } from 'react-icons/io5';
 import { requestType } from '../../../../types/Request/requestType';
 import RequestCard from '../../../organisms/RequestCard/RequestCard';
+import useTemplateState from '../../../../stores/TemplatesState/useTemplateState';
 
-type Props = { detail: requestType; close: () => void };
+type Props = { detail: requestType };
 const DetailTemplate: VFC<Props> = (props) => {
-  const { detail, close } = props;
-  const gas = detail.reward * 0.05;
+  const { detail } = props;
+  const { open } = useTemplateState();
+  const gas = (detail.reward * 0.05).toFixed(2);
   const onClick = () => {
     console.log({ detail });
   };
@@ -15,7 +17,7 @@ const DetailTemplate: VFC<Props> = (props) => {
   return (
     <div className="px-3">
       <div className="border-b-1  border-gray-300">
-        <Button onClick={close} startIcon={<IoChevronBack />}>
+        <Button onClick={() => open('home')} startIcon={<IoChevronBack />}>
           BACK
         </Button>
       </div>
@@ -26,7 +28,7 @@ const DetailTemplate: VFC<Props> = (props) => {
         owner={detail.owner}
         title={detail.title}
         reward={detail.reward}
-        gas={gas}
+        gas={Number(gas)}
         onClick={onClick}
       />
 

@@ -1,41 +1,13 @@
-import React, { VFC } from 'react';
+import React from 'react';
 import { Paper, BottomNavigation, BottomNavigationAction } from '@mui/material';
 import { BsFlower1 } from 'react-icons/bs';
-import { templateType } from '../../../types/Template/templateType';
+import useTemplateState from '../../../stores/TemplatesState/useTemplateState';
 
-type Props = {
-  detailTemplate: templateType;
-  homeTemplate: templateType;
-  requestTemplate: templateType;
-  listTemplate: templateType;
-};
-
-const Footer: VFC<Props> = (props) => {
-  const { detailTemplate, homeTemplate, requestTemplate, listTemplate } = props;
+const Footer = () => {
+  const { open } = useTemplateState();
 
   const onChange = (template: string) => {
-    switch (template) {
-      case 'home':
-        homeTemplate.open();
-        detailTemplate.close();
-        requestTemplate.close();
-        listTemplate.close();
-        break;
-      case 'request':
-        homeTemplate.close();
-        detailTemplate.close();
-        requestTemplate.open();
-        listTemplate.close();
-        break;
-      case 'list':
-        homeTemplate.close();
-        detailTemplate.close();
-        requestTemplate.close();
-        listTemplate.open();
-        break;
-      default:
-        break;
-    }
+    open(template);
   };
 
   return (
