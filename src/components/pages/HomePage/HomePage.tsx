@@ -18,25 +18,25 @@ const HomePage = () => {
   const { display, hidden } = positions;
 
   return (
-    <div className={`${isSafari} overflow-scroll`}>
+    <div className={`${isSafari}`}>
       <HomeHeader />
+      <div className="relative">
+        <div className={`${home ? display : hidden} h-screen overflow-scroll`}>
+          <HomeTemplate onClick={onClickListItem} requests={requests} />
+        </div>
 
-      <div className={` ${home ? display : hidden}`}>
-        <HomeTemplate onClick={onClickListItem} requests={requests} />
+        <div className={`${detail ? display : hidden}`}>
+          <DetailTemplate detail={detailData} />
+        </div>
+
+        <div className={`${list ? display : hidden}`}>
+          <ListTemplate />
+        </div>
+
+        <div className={`${request ? display : hidden}`}>
+          <RequestTemplate />
+        </div>
       </div>
-
-      <div className={`${detail ? display : hidden}`}>
-        <DetailTemplate detail={detailData} />
-      </div>
-
-      <div className={`${list ? display : hidden}`}>
-        <ListTemplate />
-      </div>
-
-      <div className={`${request ? display : hidden}`}>
-        <RequestTemplate />
-      </div>
-
       <div>
         <Footer />
       </div>

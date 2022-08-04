@@ -5,8 +5,8 @@ import { requestType } from '../../../../types/Request/requestType';
 
 const useHomePage = () => {
   const { open } = useTemplateState();
-  const display = ' w-full translate-x-0 opacity-100 duration-1000';
-  const hidden = 'w-full -translate-x-full opacity-0 duration-500 h-1';
+  const display = 'absolute w-full translate-x-0 opacity-100 duration-1000';
+  const hidden = 'absolute w-full -translate-x-full opacity-0 duration-500';
   const [detailData, setDetailData] = useState<requestType>({
     id: 0,
     title: '',
