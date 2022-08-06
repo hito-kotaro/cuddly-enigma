@@ -1,11 +1,23 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React, { useState, useEffect } from 'react';
-import { Autocomplete, Button, Grid, TextField } from '@mui/material';
+import {
+  Autocomplete,
+  Button,
+  Checkbox,
+  FormControlLabel,
+  Grid,
+  TextField,
+} from '@mui/material';
 import useInput from '../../../atoms/Input/hooks/useInput';
 import useInputNumber from '../../../atoms/Input/hooks/useInputNumber';
+import useRequestApi from '../../../../useApi/useRequestApi';
+import { createRequestType } from '../../../../types/Request/requestType';
 
 const RequestTemplate = () => {
   type userOptionType = { label: String; id: number };
+  const [isChecked, setIsChecked] = useState(false);
+  const [isDisabledAutomation, setIsDisableAutomation] = useState(false);
+  const { createRequest } = useRequestApi();
   const rewardInputHandler = useInputNumber();
   const titleInputHandler = useInput();
   const descInputHandler = useInput();
@@ -24,19 +36,22 @@ const RequestTemplate = () => {
   };
 
   const testConsole = () => {
-    const newRequest = {
+    const newRequest: createRequestType = {
       title: titleInputHandler.value,
-      reward: rewardInputHandler.valueNum,
-      order: val.id,
+      description: descInputHandler.value,
+      reward: Number(rewardInputHandler.valueNum),
+      order_id: isChecked ? -1 : val.id,
+      public: isChecked,
     };
     console.log(newRequest);
+    // createRequest(newRequest);
   };
 
   const validateInput = () => {
     if (
       titleInputHandler.value === '' ||
       rewardInputHandler.valueNum === '' ||
-      val.id === -1
+      (val.id === -1 && !isChecked)
     ) {
       setIsDisable(true);
     } else {
@@ -46,7 +61,12 @@ const RequestTemplate = () => {
 
   useEffect(() => {
     validateInput();
-  }, [rewardInputHandler.valueNum, titleInputHandler.value, val]);
+  }, [rewardInputHandler.valueNum, titleInputHandler.value, val, isChecked]);
+
+  const onCheck = () => {
+    setIsChecked(!isChecked);
+    setIsDisableAutomation(!isChecked);
+  };
 
   return (
     <div className="px-2">
@@ -80,6 +100,8 @@ const RequestTemplate = () => {
       <div className="h-5 px-3" />
 
       <Autocomplete
+        // public checkboxにチェックが入っている場合Disableにする
+        disabled={isChecked}
         disablePortal
         options={top100Films}
         isOptionEqualToValue={(option, value) => option.id === value.id}
@@ -88,9 +110,10 @@ const RequestTemplate = () => {
           <TextField {...params} fullWidth label="User" />
         )}
       />
-
-      <div className="h-5" />
-
+      <FormControlLabel
+        control={<Checkbox checked={isChecked} onChange={onCheck} />}
+        label="この依頼を全員に公開する"
+      />
       <TextField
         label="Comment"
         fullWidth

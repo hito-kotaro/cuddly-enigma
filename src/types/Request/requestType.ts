@@ -8,3 +8,11 @@ export type requestType = {
   created_at: string;
   updated_at: string;
 };
+
+export type createRequestType = {
+  title: string;
+  description: string;
+  reward: number;
+  order_id: number;
+  public: boolean;
+};
