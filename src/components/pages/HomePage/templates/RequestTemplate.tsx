@@ -16,7 +16,6 @@ import { createRequestType } from '../../../../types/Request/requestType';
 const RequestTemplate = () => {
   type userOptionType = { label: String; id: number };
   const [isChecked, setIsChecked] = useState(false);
-  const [isDisabledAutomation, setIsDisableAutomation] = useState(false);
   const { createRequest } = useRequestApi();
   const rewardInputHandler = useInputNumber();
   const titleInputHandler = useInput();
@@ -64,7 +63,6 @@ const RequestTemplate = () => {
 
   const onCheck = () => {
     setIsChecked(!isChecked);
-    setIsDisableAutomation(!isChecked);
   };
 
   return (
