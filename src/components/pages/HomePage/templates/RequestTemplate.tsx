@@ -43,8 +43,7 @@ const RequestTemplate = () => {
       order_id: isChecked ? -1 : val.id,
       public: isChecked,
     };
-    console.log(newRequest);
-    // createRequest(newRequest);
+    createRequest(newRequest);
   };
 
   const validateInput = () => {
