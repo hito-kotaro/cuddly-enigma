@@ -6,7 +6,6 @@ import {
   Select,
   SelectChangeEvent,
 } from '@mui/material';
-import useRequestListState from '../../../../stores/Requests/useRequestListState';
 import RequestList from '../../../molecules/RequestList/RequestList';
 import type { requestType } from '../../../../types/Request/requestType';
 
@@ -17,14 +16,20 @@ type Props = {
 
 const ListTemplate: VFC<Props> = (props) => {
   const { requests, onClick } = props;
-  const [val, setVal] = useState('open');
+  const [val, setVal] = useState('');
   const [filterd, setFilterd] = useState<requestType[]>(
-    requests.filter((r: requestType) => r.status),
+    requests.filter((r: requestType) => {
+      return r.status;
+    }),
   );
 
   const onChange = (e: SelectChangeEvent) => {
     setVal(e.target.value);
   };
+
+  useEffect(() => {
+    setVal('open');
+  }, []);
 
   useEffect(() => {
     const tmp: requestType[] = requests.filter((r: requestType) => {

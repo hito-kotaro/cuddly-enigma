@@ -10,6 +10,7 @@ const DetailTemplate: VFC<Props> = (props) => {
   const { detail } = props;
   const { open } = useTemplateState();
   const gas = (detail.reward * 0.05).toFixed(2);
+
   const onClick = () => {
     console.log({ detail });
   };
@@ -28,16 +29,14 @@ const DetailTemplate: VFC<Props> = (props) => {
         <RequestCard
           owner={detail.owner}
           title={detail.title}
+          publicRequest={detail.order_id === null}
           reward={detail.reward}
           gas={Number(gas)}
           onClick={onClick}
         />
 
         <div className="h-5" />
-
-        <div className="h-5" />
-
-        <div className="h-56 p-2 ring-1 ring-black ring-opacity-10">
+        <div className="h-48 p-2 ring-1 ring-black ring-opacity-10">
           <p className="text-gray-500">
             {detail.description === ''
               ? 'コメントはありません'
