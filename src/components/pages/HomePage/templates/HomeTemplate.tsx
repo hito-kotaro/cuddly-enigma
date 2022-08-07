@@ -19,7 +19,6 @@ const HomeTemplate: VFC<Props> = (props) => {
     return r.order_id === isAuth;
   });
 
-  console.log(filterdList);
   return (
     <div>
       <div className="h-5" />
@@ -27,7 +26,7 @@ const HomeTemplate: VFC<Props> = (props) => {
         <UserCard name="Tohi" hmt={10.11} />
       </div>
       <div className="h-5" />
-      <RequestList requests={requestList} onClick={onClick} />
+      <RequestList requests={filterdList} onClick={onClick} />
       <div className="h-40" />
     </div>
   );
