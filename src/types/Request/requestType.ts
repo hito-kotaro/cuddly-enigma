@@ -2,6 +2,8 @@ export type requestType = {
   id: number;
   title: string;
   owner: string;
+  owner_id: number;
+  order_id?: number;
   description: string;
   reward: number;
   status: string;

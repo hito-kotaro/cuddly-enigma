@@ -2,6 +2,7 @@ import React, { VFC } from 'react';
 import UserCard from '../../../atoms/UserCard/UserCard';
 import RequestList from '../../../molecules/RequestList/RequestList';
 import type { requestType } from '../../../../types/Request/requestType';
+import useRequestListState from '../../../../stores/Requests/useRequestListState';
 
 type Props = {
   requests: requestType[];
@@ -9,7 +10,8 @@ type Props = {
 };
 
 const HomeTemplate: VFC<Props> = (props) => {
-  const { requests, onClick } = props;
+  const { onClick } = props;
+  const { requestList } = useRequestListState();
   return (
     <div>
       <div className="h-5" />
@@ -17,7 +19,7 @@ const HomeTemplate: VFC<Props> = (props) => {
         <UserCard name="Tohi" hmt={10.11} />
       </div>
       <div className="h-5" />
-      <RequestList requests={requests} onClick={onClick} />
+      <RequestList requests={requestList} onClick={onClick} />
       <div className="h-40" />
     </div>
   );
