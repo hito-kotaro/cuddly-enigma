@@ -10,7 +10,7 @@ const useRequestApi = () => {
   const { setRequestList } = useRequestListState();
   const { open } = useTemplateState();
 
-  const fetchRequests = async () => {
+  const fetchRequest = async () => {
     try {
       console.log('fetch Requests');
       const result: AxiosResponse = await authInstance.get('/request/');
@@ -27,14 +27,28 @@ const useRequestApi = () => {
       await authInstance.post('/request/create/', params);
       // console.log(result.data);
       toast.success('依頼作成');
-      fetchRequests();
+      fetchRequest();
       open('home');
     } catch (error) {
       toast.error('依頼作成失敗');
       // console.log(error);
     }
   };
-  return { fetchRequests, createRequest };
+
+  const closeRequest = async (id: number) => {
+    try {
+      await authInstance.post(`/request/update/${id}`);
+      // console.log(result.data);
+      toast.success('依頼終了');
+      fetchRequest();
+      open('home');
+    } catch (error) {
+      toast.error('依頼更新失敗');
+      // console.log(error);
+    }
+  };
+
+  return { fetchRequest, createRequest, closeRequest };
 };
 
 export default useRequestApi;

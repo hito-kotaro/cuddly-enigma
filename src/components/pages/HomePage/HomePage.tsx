@@ -11,7 +11,6 @@ import useTemplateState from '../../../stores/TemplatesState/useTemplateState';
 import useRequestApi from '../../../useApi/useRequestApi';
 import useRequestListState from '../../../stores/Requests/useRequestListState';
 import useUserApi from '../../../useApi/useUserApi';
-import useUserState from '../../../stores/UserState/useUserState';
 
 const HomePage = () => {
   const { isSafari } = useUserAgentState();
@@ -19,13 +18,12 @@ const HomePage = () => {
   const { requestList } = useRequestListState();
   const { home, detail, request, list } = templates;
   const { detailData, positions, onClickListItem } = useHomePage();
-  const { fetchRequests } = useRequestApi();
+  const { fetchRequest } = useRequestApi();
   const { fetchUser } = useUserApi();
-  const { user } = useUserState();
   const { display, hidden } = positions;
 
   useEffect(() => {
-    fetchRequests();
+    fetchRequest();
     fetchUser();
   }, []);
 

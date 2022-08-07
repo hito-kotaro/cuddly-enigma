@@ -28,10 +28,6 @@ const ListTemplate: VFC<Props> = (props) => {
   };
 
   useEffect(() => {
-    setFilterStatus('open');
-  }, []);
-
-  useEffect(() => {
     const tmp: requestType[] = requests.filter((r: requestType) => {
       if (filterStatus === 'open') {
         return r.status;
@@ -42,7 +38,7 @@ const ListTemplate: VFC<Props> = (props) => {
       return r;
     });
     setFilterd(tmp);
-  }, [filterStatus]);
+  }, [filterStatus, requests]);
 
   return (
     <>
