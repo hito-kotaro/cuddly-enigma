@@ -1,9 +1,7 @@
-import React, { VFC } from 'react';
+import React, { useEffect, useState, VFC } from 'react';
 import UserCard from '../../../atoms/UserCard/UserCard';
 import RequestList from '../../../molecules/RequestList/RequestList';
 import type { requestType } from '../../../../types/Request/requestType';
-import useRequestListState from '../../../../stores/Requests/useRequestListState';
-import useAuthState from '../../../../stores/AuthState/useAuthState';
 
 type Props = {
   requests: requestType[];
@@ -11,13 +9,16 @@ type Props = {
 };
 
 const HomeTemplate: VFC<Props> = (props) => {
-  const { onClick } = props;
-  const { isAuth } = useAuthState();
-  const { requestList } = useRequestListState();
+  const { requests, onClick } = props;
+  const [filtered, setFiltered] = useState<requestType[]>([]);
 
-  const filterdList: requestType[] = requestList.filter((r: requestType) => {
-    return r.order_id === isAuth;
-  });
+  // requestsが更新されるたびにフィルター
+  useEffect(() => {
+    const tmp: requestType[] = requests.filter((r: requestType) => {
+      return r.order_id === Number(localStorage.getItem('id'));
+    });
+    setFiltered(tmp);
+  }, [requests]);
 
   return (
     <div>
@@ -26,7 +27,7 @@ const HomeTemplate: VFC<Props> = (props) => {
         <UserCard name="Tohi" hmt={10.11} />
       </div>
       <div className="h-5" />
-      <RequestList requests={filterdList} onClick={onClick} />
+      <RequestList requests={filtered} onClick={onClick} />
       <div className="h-40" />
     </div>
   );

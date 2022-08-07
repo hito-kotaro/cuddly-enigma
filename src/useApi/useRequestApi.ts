@@ -12,6 +12,7 @@ const useRequestApi = () => {
 
   const fetchRequests = async () => {
     try {
+      console.log('fetch Requests');
       const result: AxiosResponse = await authInstance.get('/request/');
       // console.log(result.data.requests);
       setRequestList(result.data.requests);

@@ -16,9 +16,9 @@ const useLogin = () => {
       setIsLoading(true);
       const result: AxiosResponse = await axiosInstance.post('/auth/', params);
       localStorage.setItem('token', result.data.access_token);
-      // localStorage.setItem('id', result.data.user_id);
+      localStorage.setItem('id', result.data.id);
       setIsLoading(false);
-      setIsAuth(result.data.id);
+      setIsAuth(true);
       navigate('/home');
       toast.success('welcome');
     } catch (error) {

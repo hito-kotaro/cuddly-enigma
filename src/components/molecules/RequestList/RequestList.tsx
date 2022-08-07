@@ -12,23 +12,26 @@ const RequestList: VFC<Props> = (props) => {
   const { requests, onClick } = props;
 
   return (
-    <div className="h-auto ring-1 ring-black ring-opacity-10">
-      <List sx={{ width: '100%', bgcolor: 'background.paper' }}>
-        {requests.map((r: requestType) => (
-          <>
-            <PrimaryListItem
-              id={r.id}
-              name={r.owner}
-              title={r.title}
-              reward={r.reward}
-              description={r.description}
-              onClick={onClick}
-            />
-            <Divider variant="inset" component="li" />
-          </>
-        ))}
-        <div className="h-12" />
-      </List>
+    <div className="ring-1 ring-black ring-opacity-10">
+      {requests.length <= 0 ? (
+        '該当する依頼がありません'
+      ) : (
+        <List sx={{ width: '100%', bgcolor: 'background.paper' }}>
+          {requests.map((r: requestType) => (
+            <>
+              <PrimaryListItem
+                id={r.id}
+                name={r.owner}
+                title={r.title}
+                reward={r.reward}
+                description={r.description}
+                onClick={onClick}
+              />
+              <Divider variant="inset" component="li" />
+            </>
+          ))}
+        </List>
+      )}
     </div>
   );
 };
