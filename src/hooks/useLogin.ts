@@ -16,9 +16,9 @@ const useLogin = () => {
       setIsLoading(true);
       const result: AxiosResponse = await axiosInstance.post('/auth/', params);
       localStorage.setItem('token', result.data.access_token);
-      localStorage.setItem('id', result.data.user_id);
+      // localStorage.setItem('id', result.data.user_id);
       setIsLoading(false);
-      setIsAuth(true);
+      setIsAuth(result.data.id);
       navigate('/home');
       toast.success('welcome');
     } catch (error) {
@@ -28,7 +28,7 @@ const useLogin = () => {
 
   const logout = () => {
     localStorage.removeItem('token');
-    localStorage.removeItem('id');
+    // localStorage.removeItem('id');
     navigate('/');
     toast.success('logout');
   };

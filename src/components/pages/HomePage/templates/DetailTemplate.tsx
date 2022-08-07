@@ -15,35 +15,37 @@ const DetailTemplate: VFC<Props> = (props) => {
   };
 
   return (
-    <div className="px-3">
-      <div className="border-b-1  border-gray-300">
+    <>
+      <div className="bg-base border-b-1  border-gray-300">
         <Button onClick={() => open('home')} startIcon={<IoChevronBack />}>
           BACK
         </Button>
       </div>
 
-      <div className="h-5" />
+      <div className="px-3">
+        <div className="h-5" />
 
-      <RequestCard
-        owner={detail.owner}
-        title={detail.title}
-        reward={detail.reward}
-        gas={Number(gas)}
-        onClick={onClick}
-      />
+        <RequestCard
+          owner={detail.owner}
+          title={detail.title}
+          reward={detail.reward}
+          gas={Number(gas)}
+          onClick={onClick}
+        />
 
-      <div className="h-5" />
+        <div className="h-5" />
 
-      <div className="h-5" />
+        <div className="h-5" />
 
-      <div className="h-56 p-2 ring-1 ring-black ring-opacity-10">
-        <p className="text-gray-500">
-          {detail.description === ''
-            ? 'コメントはありません'
-            : detail.description}
-        </p>
+        <div className="h-56 p-2 ring-1 ring-black ring-opacity-10">
+          <p className="text-gray-500">
+            {detail.description === ''
+              ? 'コメントはありません'
+              : detail.description}
+          </p>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

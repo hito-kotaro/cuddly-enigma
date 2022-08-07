@@ -42,6 +42,10 @@ const RequestTemplate = () => {
       order_id: isChecked ? -1 : val.id,
       public: isChecked,
     };
+    titleInputHandler.clear();
+    descInputHandler.clear();
+    rewardInputHandler.clear();
+    setIsChecked(false);
     createRequest(newRequest);
   };
 

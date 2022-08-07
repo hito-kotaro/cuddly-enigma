@@ -3,6 +3,7 @@ import UserCard from '../../../atoms/UserCard/UserCard';
 import RequestList from '../../../molecules/RequestList/RequestList';
 import type { requestType } from '../../../../types/Request/requestType';
 import useRequestListState from '../../../../stores/Requests/useRequestListState';
+import useAuthState from '../../../../stores/AuthState/useAuthState';
 
 type Props = {
   requests: requestType[];
@@ -11,7 +12,14 @@ type Props = {
 
 const HomeTemplate: VFC<Props> = (props) => {
   const { onClick } = props;
+  const { isAuth } = useAuthState();
   const { requestList } = useRequestListState();
+
+  const filterdList: requestType[] = requestList.filter((r: requestType) => {
+    return r.order_id === isAuth;
+  });
+
+  console.log(filterdList);
   return (
     <div>
       <div className="h-5" />
