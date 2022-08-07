@@ -16,7 +16,7 @@ type Props = {
 
 const ListTemplate: VFC<Props> = (props) => {
   const { requests, onClick } = props;
-  const [val, setVal] = useState('');
+  const [filterStatus, setFilterStatus] = useState('');
   const [filterd, setFilterd] = useState<requestType[]>(
     requests.filter((r: requestType) => {
       return r.status;
@@ -24,25 +24,25 @@ const ListTemplate: VFC<Props> = (props) => {
   );
 
   const onChange = (e: SelectChangeEvent) => {
-    setVal(e.target.value);
+    setFilterStatus(e.target.value);
   };
 
   useEffect(() => {
-    setVal('open');
+    setFilterStatus('open');
   }, []);
 
   useEffect(() => {
     const tmp: requestType[] = requests.filter((r: requestType) => {
-      if (val === 'open') {
+      if (filterStatus === 'open') {
         return r.status;
       }
-      if (val === 'closed') {
+      if (filterStatus === 'closed') {
         return !r.status;
       }
       return r;
     });
     setFilterd(tmp);
-  }, [val]);
+  }, [filterStatus]);
 
   return (
     <>
@@ -52,7 +52,7 @@ const ListTemplate: VFC<Props> = (props) => {
             <InputLabel>Status</InputLabel>
             <Select
               defaultValue="open"
-              value={val}
+              value={filterStatus}
               label="Status"
               onChange={onChange}
             >
