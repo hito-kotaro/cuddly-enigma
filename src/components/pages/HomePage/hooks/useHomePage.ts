@@ -16,7 +16,7 @@ const useHomePage = () => {
     owner_id: 0,
     description: '',
     reward: 0,
-    status: '',
+    status: false,
     created_at: '',
     updated_at: '',
   });

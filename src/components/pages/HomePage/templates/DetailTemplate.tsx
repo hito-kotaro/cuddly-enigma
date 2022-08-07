@@ -31,6 +31,7 @@ const DetailTemplate: VFC<Props> = (props) => {
           title={detail.title}
           publicRequest={detail.order_id === null}
           reward={detail.reward}
+          status={detail.status}
           gas={Number(gas)}
           onClick={onClick}
         />

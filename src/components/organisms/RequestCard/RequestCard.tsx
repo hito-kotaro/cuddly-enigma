@@ -9,12 +9,13 @@ type Props = {
   title: string;
   reward: number;
   gas: number;
+  status: boolean;
   publicRequest: boolean;
   onClick: () => void;
 };
 
 const RequestCard: VFC<Props> = (props) => {
-  const { owner, title, reward, gas, publicRequest, onClick } = props;
+  const { owner, title, reward, gas, publicRequest, status, onClick } = props;
 
   return (
     <>
@@ -23,15 +24,28 @@ const RequestCard: VFC<Props> = (props) => {
         <div className="text-2xl leading-8  whitespace-nowrap truncate">
           {title}
         </div>
-        {publicRequest ? (
-          <div className="ml-auto">
-            <Badge color="emerald">public</Badge>
-          </div>
-        ) : (
-          <div className="ml-auto">
-            <Badge color="rose">order</Badge>
-          </div>
-        )}
+
+        <div className=" ml-auto flex">
+          {publicRequest ? (
+            <div className="">
+              <Badge color="emerald">public</Badge>
+            </div>
+          ) : (
+            <div className="">
+              <Badge color="rose">order</Badge>
+            </div>
+          )}
+          <div className="w-1 h-1" />
+          {status ? (
+            <div className="">
+              <Badge color="emerald">open</Badge>
+            </div>
+          ) : (
+            <div className="">
+              <Badge color="rose">closed</Badge>
+            </div>
+          )}
+        </div>
       </div>
 
       <div className="flex font-mono">

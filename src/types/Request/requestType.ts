@@ -6,7 +6,7 @@ export type requestType = {
   order_id?: number;
   description: string;
   reward: number;
-  status: string;
+  status: boolean;
   created_at: string;
   updated_at: string;
 };

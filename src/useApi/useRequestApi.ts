@@ -14,7 +14,7 @@ const useRequestApi = () => {
     try {
       console.log('fetch Requests');
       const result: AxiosResponse = await authInstance.get('/request/');
-      // console.log(result.data.requests);
+      console.log(result.data.requests);
       setRequestList(result.data.requests);
     } catch (error) {
       toast.error('依頼取得失敗');

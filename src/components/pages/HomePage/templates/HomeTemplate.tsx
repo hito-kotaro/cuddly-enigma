@@ -2,6 +2,7 @@ import React, { useEffect, useState, VFC } from 'react';
 import UserCard from '../../../atoms/UserCard/UserCard';
 import RequestList from '../../../molecules/RequestList/RequestList';
 import type { requestType } from '../../../../types/Request/requestType';
+import useUserState from '../../../../stores/UserState/useUserState';
 
 type Props = {
   requests: requestType[];
@@ -10,6 +11,7 @@ type Props = {
 
 const HomeTemplate: VFC<Props> = (props) => {
   const { requests, onClick } = props;
+  const { user } = useUserState();
   const [filtered, setFiltered] = useState<requestType[]>([]);
 
   // requestsが更新されるたびにフィルター
@@ -24,7 +26,7 @@ const HomeTemplate: VFC<Props> = (props) => {
     <div>
       <div className="h-5" />
       <div className="flex justify-center">
-        <UserCard name="Tohi" hmt={10.11} />
+        <UserCard name={user.name} hmt={user.hmt} />
       </div>
       <div className="h-5" />
       <RequestList requests={filtered} onClick={onClick} />
