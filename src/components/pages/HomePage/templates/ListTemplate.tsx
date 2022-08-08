@@ -16,7 +16,7 @@ type Props = {
 
 const ListTemplate: VFC<Props> = (props) => {
   const { requests, onClick } = props;
-  const [filterStatus, setFilterStatus] = useState('');
+  const [filterStatus, setFilterStatus] = useState('open');
   const [filterd, setFilterd] = useState<requestType[]>(
     requests.filter((r: requestType) => {
       return r.status;
