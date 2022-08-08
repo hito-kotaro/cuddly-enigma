@@ -6,29 +6,34 @@ import { requestType } from '../../../../types/Request/requestType';
 import RequestCard from '../../../organisms/RequestCard/RequestCard';
 import useTemplateState from '../../../../stores/TemplatesState/useTemplateState';
 import useUserState from '../../../../stores/UserState/useUserState';
+import useRequestApi from '../../../../useApi/useRequestApi';
 
 type Props = { detail: requestType };
 const DetailTemplate: VFC<Props> = (props) => {
   const { detail } = props;
   const { user } = useUserState();
   const { open } = useTemplateState();
+  const { completeRequest } = useRequestApi();
   const gas = (detail.reward * 0.05).toFixed(2);
 
   const onClick = () => {
-    console.log({ detail });
+    completeRequest(detail.id);
   };
 
   return (
     <>
       <div className="bg-base border-b-1  border-gray-300 flex px-3">
         <div>
-          <Button onClick={() => open('home')} startIcon={<IoChevronBack />}>
+          <Button onClick={() => open('list')} startIcon={<IoChevronBack />}>
             BACK
           </Button>
         </div>
         {detail.owner_id === user.id ? (
           <div className="ml-auto">
-            <Button onClick={() => open('home')} startIcon={<AiOutlineClose />}>
+            <Button onClick={() => open('list')} startIcon={<AiOutlineClose />}>
+              {/* 完了していない依頼を終了した場合は、GASを引かれる */}
+              {/* 完了依頼を出したらしたら自動的に削除される */}
+              {/* 承認を却下した場合 */}
               依頼を終了する
             </Button>
           </div>
@@ -42,6 +47,7 @@ const DetailTemplate: VFC<Props> = (props) => {
 
         <RequestCard
           owner={detail.owner}
+          ownerId={detail.owner_id}
           title={detail.title}
           publicRequest={detail.order_id === null}
           reward={detail.reward}

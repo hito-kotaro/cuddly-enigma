@@ -1,11 +1,14 @@
 import React, { VFC } from 'react';
+import useUserState from '../../../stores/UserState/useUserState';
 import Badge from '../../atoms/Badge/Badge';
 import HanamaruButton from '../../atoms/Button/HanamaruButton/HanamaruButton';
 import NameLabel from '../../molecules/NameLabel/NameLabel';
 import RewardDisplay from '../../molecules/RewardDisplay/RewardDisplay';
+import BadgeDisplay from '../BadgeDisplay/BadgeDisplay';
 
 type Props = {
   owner: string;
+  ownerId: number;
   title: string;
   reward: number;
   gas: number;
@@ -15,8 +18,9 @@ type Props = {
 };
 
 const RequestCard: VFC<Props> = (props) => {
-  const { owner, title, reward, gas, publicRequest, status, onClick } = props;
-
+  const { owner, ownerId, title, reward, gas, publicRequest, status, onClick } =
+    props;
+  const { user } = useUserState();
   return (
     <>
       <div className="h-5" />
@@ -26,28 +30,11 @@ const RequestCard: VFC<Props> = (props) => {
         </div>
 
         <div className=" ml-auto flex">
-          {publicRequest ? (
-            <div className="">
-              <Badge color="emerald">public</Badge>
-            </div>
-          ) : (
-            <div className="">
-              <Badge color="rose">order</Badge>
-            </div>
-          )}
-          <div className="w-1 h-1" />
-          {status ? (
-            <div className="">
-              <Badge color="emerald">open</Badge>
-            </div>
-          ) : (
-            <div className="">
-              <Badge color="rose">closed</Badge>
-            </div>
-          )}
+          <BadgeDisplay publicRequest={publicRequest} status={status} />
         </div>
       </div>
 
+      <div className="h-2" />
       <div className="flex font-mono">
         <div className="text-lg leading-6 w-20">Owner:</div>
         <NameLabel name={owner} path="/dummy/icon" />
@@ -56,7 +43,11 @@ const RequestCard: VFC<Props> = (props) => {
       <div className="h-3" />
 
       <div className="flex">
-        <HanamaruButton label="done" onClick={onClick} />
+        <HanamaruButton
+          label="done"
+          onClick={onClick}
+          isDisabled={!!(status === false || ownerId === user.id)}
+        />
         <div className="ml-auto">
           <RewardDisplay reward={reward} gas={gas} />
         </div>

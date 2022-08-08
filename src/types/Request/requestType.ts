@@ -18,7 +18,3 @@ export type createRequestType = {
   order_id: number;
   public: boolean;
 };
-
-export type closeRequestType = {
-  id: number;
-};

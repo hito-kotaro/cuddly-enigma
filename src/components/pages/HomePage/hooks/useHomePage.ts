@@ -6,6 +6,7 @@ import { requestType } from '../../../../types/Request/requestType';
 const useHomePage = () => {
   const { open } = useTemplateState();
   const [filterList, setFilterList] = useState<requestType[]>([]);
+  const [backTo, setBackTo] = useState('home');
   const display = 'absolute w-full translate-x-0 opacity-100 duration-1000';
   const hidden = 'absolute w-full -translate-x-full opacity-0 duration-500';
   const { requestList } = useRequestListState();

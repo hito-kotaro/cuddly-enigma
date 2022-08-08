@@ -35,9 +35,9 @@ const useRequestApi = () => {
     }
   };
 
-  const closeRequest = async (id: number) => {
+  const closeRequest = async (requestId: number) => {
     try {
-      await authInstance.post(`/request/update/${id}`);
+      await authInstance.put(`/request/update/${requestId}`);
       // console.log(result.data);
       toast.success('依頼終了');
       fetchRequest();
@@ -48,7 +48,18 @@ const useRequestApi = () => {
     }
   };
 
-  return { fetchRequest, createRequest, closeRequest };
+  const completeRequest = async (requestId: number) => {
+    try {
+      await authInstance.put(`/request/complete/${requestId}`);
+      toast.success('依頼終了');
+      fetchRequest();
+      open('home');
+    } catch (error) {
+      toast.error('依頼更新失敗');
+    }
+  };
+
+  return { fetchRequest, createRequest, closeRequest, completeRequest };
 };
 
 export default useRequestApi;

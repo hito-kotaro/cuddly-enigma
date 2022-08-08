@@ -12,7 +12,6 @@ const useTemplateState = () => {
       list: template === 'list',
       request: template === 'request',
     };
-    console.log(newState);
 
     setTemplates(newState);
   };
