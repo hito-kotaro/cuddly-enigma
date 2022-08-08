@@ -12,9 +12,11 @@ import useInput from '../../../atoms/Input/hooks/useInput';
 import useInputNumber from '../../../atoms/Input/hooks/useInputNumber';
 import useRequestApi from '../../../../useApi/useRequestApi';
 import { createRequestType } from '../../../../types/Request/requestType';
+import type { userOptionType } from '../../../../types/User/userType';
+import useUserListState from '../../../../stores/UserState/useUserListState';
+import useUserState from '../../../../stores/UserState/useUserState';
 
 const RequestTemplate = () => {
-  type userOptionType = { label: String; id: number };
   const [isChecked, setIsChecked] = useState(false);
   const { createRequest } = useRequestApi();
   const rewardInputHandler = useInputNumber();
@@ -22,6 +24,9 @@ const RequestTemplate = () => {
   const descInputHandler = useInput();
   const [val, setVal] = useState<userOptionType>({ label: '', id: -1 });
   const [isDisable, setIsDisable] = useState(false);
+  const { userList } = useUserListState();
+  const { user } = useUserState();
+  const [filterd, setFilterd] = useState<userOptionType[]>(userList);
 
   const top100Films = [
     { label: 'Public', id: 0 },
@@ -33,6 +38,14 @@ const RequestTemplate = () => {
   const onChange = (value: { label: string; id: number }) => {
     setVal(value);
   };
+
+  useEffect(() => {
+    const filter = userList.filter((u: userOptionType) => {
+      return user.id !== u.id;
+    });
+
+    setFilterd(filter);
+  }, [userList]);
 
   const testConsole = () => {
     const newRequest: createRequestType = {
@@ -104,7 +117,7 @@ const RequestTemplate = () => {
         // public checkboxにチェックが入っている場合Disableにする
         disabled={isChecked}
         disablePortal
-        options={top100Films}
+        options={filterd}
         isOptionEqualToValue={(option, value) => option.id === value.id}
         onChange={(e, v) => onChange(v ?? { label: '', id: -1 })}
         renderInput={(params) => (

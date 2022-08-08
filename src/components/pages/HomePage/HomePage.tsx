@@ -19,12 +19,13 @@ const HomePage = () => {
   const { home, detail, request, list } = templates;
   const { detailData, positions, onClickListItem } = useHomePage();
   const { fetchRequest } = useRequestApi();
-  const { fetchUser } = useUserApi();
+  const { fetchUser, fetchUserList } = useUserApi();
   const { display, hidden } = positions;
 
   useEffect(() => {
     fetchRequest();
     fetchUser();
+    fetchUserList()
   }, []);
 
   return (
