@@ -11,21 +11,25 @@ import useTemplateState from '../../../stores/TemplatesState/useTemplateState';
 import useRequestApi from '../../../useApi/useRequestApi';
 import useRequestListState from '../../../stores/Requests/useRequestListState';
 import useUserApi from '../../../useApi/useUserApi';
+import useApproveApi from '../../../useApi/useApproveApi';
+import ApproveTemplate from './templates/ApproveTemplate';
 
 const HomePage = () => {
   const { isSafari } = useUserAgentState();
   const { templates } = useTemplateState();
   const { requestList } = useRequestListState();
-  const { home, detail, request, list } = templates;
+  const { home, detail, request, list, approve } = templates;
   const { detailData, positions, onClickListItem } = useHomePage();
   const { fetchRequest } = useRequestApi();
   const { fetchUser, fetchUserList } = useUserApi();
+  const { fetchApprove } = useApproveApi();
   const { display, hidden } = positions;
 
   useEffect(() => {
     fetchRequest();
     fetchUser();
-    fetchUserList()
+    fetchUserList();
+    fetchApprove();
   }, []);
 
   return (
@@ -46,6 +50,10 @@ const HomePage = () => {
 
         <div className={`${request ? display : hidden}`}>
           <RequestTemplate />
+        </div>
+
+        <div className={`${approve ? display : hidden}`}>
+          <ApproveTemplate />
         </div>
       </div>
       <div>

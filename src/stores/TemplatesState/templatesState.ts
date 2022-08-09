@@ -6,6 +6,7 @@ const defaultState = {
   detail: false,
   list: false,
   request: false,
+  approve: false,
 };
 
 export const templateState = atom<templateStateType>({

@@ -3,4 +3,5 @@ export type templateStateType = {
   detail: boolean;
   list: boolean;
   request: boolean;
+  approve: boolean;
 };

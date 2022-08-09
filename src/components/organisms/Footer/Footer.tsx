@@ -42,7 +42,7 @@ const Footer = () => {
         <BottomNavigationAction
           label="承認"
           icon={<BsFlower1 />}
-          value="request"
+          value="approve"
         />
       </BottomNavigation>
     </Paper>
