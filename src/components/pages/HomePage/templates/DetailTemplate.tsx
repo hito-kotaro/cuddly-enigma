@@ -7,6 +7,7 @@ import RequestCard from '../../../organisms/RequestCard/RequestCard';
 import useTemplateState from '../../../../stores/TemplatesState/useTemplateState';
 import useUserState from '../../../../stores/UserState/useUserState';
 import useRequestApi from '../../../../useApi/useRequestApi';
+import useGasState from '../../../../stores/GasState/useGasState';
 
 type Props = { detail: requestType };
 const DetailTemplate: VFC<Props> = (props) => {
@@ -14,7 +15,8 @@ const DetailTemplate: VFC<Props> = (props) => {
   const { user } = useUserState();
   const { open } = useTemplateState();
   const { completeRequest } = useRequestApi();
-  const gas = (detail.reward * 0.05).toFixed(2);
+  const { gas } = useGasState();
+  // const gas = (detail.reward * 0.05).toFixed(2);
 
   const onClick = () => {
     completeRequest(detail.id);

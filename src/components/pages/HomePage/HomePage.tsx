@@ -15,6 +15,7 @@ import useApproveApi from '../../../useApi/useApproveApi';
 import ApproveTemplate from './templates/ApproveTemplate';
 import useApproveListState from '../../../stores/Approves/useApproveListState';
 import ApproveDetailTemplate from './templates/ApproveDetailTemplate';
+import useBankApi from '../../../useApi/useBankApi';
 
 const HomePage = () => {
   const { isSafari } = useUserAgentState();
@@ -30,6 +31,7 @@ const HomePage = () => {
     onClickRequestListItem,
   } = useHomePage();
   const { fetchRequest } = useRequestApi();
+  const { fetchGasValue } = useBankApi();
   const { fetchUser, fetchUserList } = useUserApi();
   const { fetchApprove } = useApproveApi();
   const { display, hidden } = positions;
@@ -39,6 +41,7 @@ const HomePage = () => {
     fetchUser();
     fetchUserList();
     fetchApprove();
+    fetchGasValue();
   }, []);
 
   return (

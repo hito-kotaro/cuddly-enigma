@@ -1,6 +1,7 @@
 import { Button } from '@mui/material';
 import React, { VFC } from 'react';
 import { IoChevronBack } from 'react-icons/io5';
+import useGasState from '../../../../stores/GasState/useGasState';
 import useTemplateState from '../../../../stores/TemplatesState/useTemplateState';
 import {
   approveType,
@@ -14,7 +15,8 @@ const ApproveDetailTemplate: VFC<Props> = (props) => {
   const { detail } = props;
   const { updateApprove } = useApproveApi();
   const { open } = useTemplateState();
-  const gas = (detail.reward * 0.05).toFixed(2);
+  const { gas } = useGasState();
+  // const gas = (detail.reward * 0.05).toFixed(2);
 
   const onClick = () => {
     // console.log(detail.id);
