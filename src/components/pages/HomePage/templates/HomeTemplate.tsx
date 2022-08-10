@@ -27,6 +27,7 @@ const HomeTemplate: VFC<Props> = (props) => {
       <div className="h-5" />
       <div className="flex justify-center">
         <UserCard name={user.name} hmt={user.hmt} />
+        {/* <UserCard name={user.name} hmt={1000}} /> */}
       </div>
       <div className="h-5" />
       <RequestList requests={filtered} onClick={onClick} />
