@@ -28,13 +28,6 @@ const RequestTemplate = () => {
   const { user } = useUserState();
   const [filterd, setFilterd] = useState<userOptionType[]>(userList);
 
-  const top100Films = [
-    { label: 'Public', id: 0 },
-    { label: 'User1', id: 1 },
-    { label: 'User2', id: 2 },
-    { label: 'User3', id: 3 },
-  ];
-
   const onChange = (value: { label: string; id: number }) => {
     setVal(value);
   };
@@ -66,6 +59,8 @@ const RequestTemplate = () => {
     if (
       titleInputHandler.value === '' ||
       rewardInputHandler.valueNum === '' ||
+      Number(rewardInputHandler.valueNum) > user.hmt ||
+      Number(rewardInputHandler.valueNum) < 0.01 ||
       (val.id === -1 && !isChecked)
     ) {
       setIsDisable(true);
@@ -85,7 +80,10 @@ const RequestTemplate = () => {
   return (
     <div className="px-2">
       <div className="h-3" />
-      <div>依頼を発行する</div>
+      <div className="flex">
+        <div>依頼を発行する</div>
+        <div className="ml-auto">所持HMT:{user.hmt}</div>
+      </div>
       <div className="h-3" />
 
       <div>
