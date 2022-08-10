@@ -1,6 +1,7 @@
 import { AxiosResponse } from 'axios';
 import { createAxiosTokenInstance } from '../libs/axiosInstance';
 import useApproveListState from '../stores/Approves/useApproveListState';
+import { updateApproveType } from '../types/Approve/approveType';
 
 const useApproveApi = () => {
   const authInstance = createAxiosTokenInstance();
@@ -15,7 +16,21 @@ const useApproveApi = () => {
       console.log(error);
     }
   };
-  return { fetchApprove };
+
+  const updateApprove = async (params: updateApproveType) => {
+    try {
+      console.log(params);
+      const result: AxiosResponse = await authInstance.put(
+        '/approve/update/',
+        params,
+      );
+      console.log(result.data.approves);
+      fetchApprove();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  return { fetchApprove, updateApprove };
 };
 
 export default useApproveApi;

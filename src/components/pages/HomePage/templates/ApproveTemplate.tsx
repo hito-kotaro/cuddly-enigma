@@ -32,8 +32,8 @@ const ApproveTemplate: VFC<Props> = (props) => {
       if (filterStatus === 'open') {
         return a.status === 'open';
       }
-      if (filterStatus === 'closed') {
-        return a.status === 'closed';
+      if (filterStatus === 'approved') {
+        return a.status === 'approved';
       }
       return a;
     });
@@ -53,7 +53,7 @@ const ApproveTemplate: VFC<Props> = (props) => {
               onChange={onChange}
             >
               <MenuItem value="open">open</MenuItem>
-              <MenuItem value="closed">closed</MenuItem>
+              <MenuItem value="approved">approved</MenuItem>
               <MenuItem value="all">all</MenuItem>
             </Select>
           </FormControl>

@@ -46,7 +46,7 @@ const ApproveCard: VFC<Props> = (props) => {
         <HanamaruButton
           label="approve"
           onClick={onClick}
-          isDisabled={!!(status === 'closed' || applicantId === user.id)}
+          isDisabled={!!(status === 'approved' || applicantId === user.id)}
         />
         <div className="ml-auto">
           <RewardDisplay reward={reward} gas={gas} />

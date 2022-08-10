@@ -11,3 +11,8 @@ export type approveType = {
   created_at: string;
   updated_at: string;
 };
+
+export type updateApproveType = {
+  id: number;
+  new_status: string;
+};
