@@ -16,7 +16,7 @@ const ApproveDetailTemplate: VFC<Props> = (props) => {
   const { updateApprove } = useApproveApi();
   const { open } = useTemplateState();
   const { gas } = useGasState();
-  // const gas = (detail.reward * 0.05).toFixed(2);
+  const tax = (detail.reward * gas).toFixed(2);
 
   const onClick = () => {
     // console.log(detail.id);
@@ -48,7 +48,7 @@ const ApproveDetailTemplate: VFC<Props> = (props) => {
           title={detail.title}
           reward={detail.reward}
           status={detail.status}
-          gas={Number(gas)}
+          gas={Number(tax)}
           onClick={onClick}
         />
 

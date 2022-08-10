@@ -16,7 +16,7 @@ const DetailTemplate: VFC<Props> = (props) => {
   const { open } = useTemplateState();
   const { completeRequest } = useRequestApi();
   const { gas } = useGasState();
-  // const gas = (detail.reward * 0.05).toFixed(2);
+  const tax = (detail.reward * gas).toFixed(2);
 
   const onClick = () => {
     completeRequest(detail.id);
@@ -54,7 +54,7 @@ const DetailTemplate: VFC<Props> = (props) => {
           publicRequest={detail.order_id === null}
           reward={detail.reward}
           status={detail.status}
-          gas={Number(gas)}
+          gas={Number(tax)}
           onClick={onClick}
         />
 
