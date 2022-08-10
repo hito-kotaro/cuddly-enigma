@@ -40,7 +40,7 @@ const RequestTemplate = () => {
     setFilterd(filter);
   }, [userList]);
 
-  const testConsole = () => {
+  const create = () => {
     const newRequest: createRequestType = {
       title: titleInputHandler.value,
       description: descInputHandler.value,
@@ -137,7 +137,7 @@ const RequestTemplate = () => {
       />
       <div className="h-5" />
       <div className="flex justify-center w-11/12 mx-auto">
-        <Button onClick={testConsole} variant="contained" disabled={isDisable}>
+        <Button onClick={create} variant="contained" disabled={isDisable}>
           依頼発行
         </Button>
       </div>
