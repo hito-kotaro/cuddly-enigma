@@ -5,11 +5,9 @@ import {
   Select,
   MenuItem,
   SelectChangeEvent,
-  Divider,
-  List,
 } from '@mui/material';
 import { approveType } from '../../../../types/Approve/approveType';
-import PrimaryListItem from '../../../atoms/PrimaryListItem/PrimaryListItem';
+import ApproveList from '../../../molecules/ApproveList/ApproveList';
 
 type Props = {
   approves: approveType[];
@@ -30,14 +28,14 @@ const ApproveTemplate: VFC<Props> = (props) => {
   };
 
   useEffect(() => {
-    const tmp: approveType[] = approves.filter((r: approveType) => {
+    const tmp: approveType[] = approves.filter((a: approveType) => {
       if (filterStatus === 'open') {
-        return r.status;
+        return a.status === 'open';
       }
       if (filterStatus === 'closed') {
-        return !r.status;
+        return a.status === 'closed';
       }
-      return r;
+      return a;
     });
     setFilterd(tmp);
   }, [filterStatus, approves]);
@@ -61,22 +59,7 @@ const ApproveTemplate: VFC<Props> = (props) => {
           </FormControl>
         </div>
       </div>
-      <List sx={{ width: '100%', bgcolor: 'background.paper' }}>
-        {approves.map((a: approveType) => (
-          <>
-            <PrimaryListItem
-              id={a.id}
-              name={a.applicant}
-              title={a.title}
-              reward={a.reward}
-              description={a.description}
-              onClick={onClick}
-            />
-            <Divider variant="inset" component="li" />
-          </>
-        ))}
-      </List>
-
+      <ApproveList approves={filterd} onClick={onClick} />
       <div className="h-40" />
     </>
   );
