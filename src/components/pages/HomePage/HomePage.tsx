@@ -13,13 +13,22 @@ import useRequestListState from '../../../stores/Requests/useRequestListState';
 import useUserApi from '../../../useApi/useUserApi';
 import useApproveApi from '../../../useApi/useApproveApi';
 import ApproveTemplate from './templates/ApproveTemplate';
+import useApproveListState from '../../../stores/Approves/useApproveListState';
+import ApproveDetailTemplate from './templates/ApproveDetailTemplate';
 
 const HomePage = () => {
   const { isSafari } = useUserAgentState();
   const { templates } = useTemplateState();
   const { requestList } = useRequestListState();
-  const { home, detail, request, list, approve } = templates;
-  const { detailData, positions, onClickListItem } = useHomePage();
+  const { approveList } = useApproveListState();
+  const { home, detail, request, list, approve, approveDetail } = templates;
+  const {
+    requestDetailData,
+    approveDetailData,
+    positions,
+    onClickApproveListItem,
+    onClickRequestListItem,
+  } = useHomePage();
   const { fetchRequest } = useRequestApi();
   const { fetchUser, fetchUserList } = useUserApi();
   const { fetchApprove } = useApproveApi();
@@ -37,15 +46,25 @@ const HomePage = () => {
       <HomeHeader />
       <div className="relative">
         <div className={`${home ? display : hidden} h-screen overflow-scroll`}>
-          <HomeTemplate onClick={onClickListItem} requests={requestList} />
+          <HomeTemplate
+            onClick={onClickRequestListItem}
+            requests={requestList}
+          />
         </div>
 
         <div className={`${detail ? display : hidden}`}>
-          <DetailTemplate detail={detailData} />
+          <DetailTemplate detail={requestDetailData} />
+        </div>
+
+        <div className={`${approveDetail ? display : hidden}`}>
+          <ApproveDetailTemplate detail={approveDetailData} />
         </div>
 
         <div className={`${list ? display : hidden} h-screen overflow-scroll`}>
-          <ListTemplate onClick={onClickListItem} requests={requestList} />
+          <ListTemplate
+            onClick={onClickRequestListItem}
+            requests={requestList}
+          />
         </div>
 
         <div className={`${request ? display : hidden}`}>
@@ -53,7 +72,10 @@ const HomePage = () => {
         </div>
 
         <div className={`${approve ? display : hidden}`}>
-          <ApproveTemplate />
+          <ApproveTemplate
+            onClick={onClickApproveListItem}
+            approves={approveList}
+          />
         </div>
       </div>
       <div>
