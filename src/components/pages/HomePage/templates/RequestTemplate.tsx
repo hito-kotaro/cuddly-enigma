@@ -33,11 +33,14 @@ const RequestTemplate = () => {
   };
 
   useEffect(() => {
-    const filter = userList.filter((u: userOptionType) => {
-      return user.id !== u.id;
-    });
-
-    setFilterd(filter);
+    if (user.isBank) {
+      setFilterd(userList);
+    } else {
+      const filter = userList.filter((u: userOptionType) => {
+        return user.id !== u.id;
+      });
+      setFilterd(filter);
+    }
   }, [userList]);
 
   const create = () => {
