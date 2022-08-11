@@ -16,9 +16,11 @@ const useUserApi = () => {
       if (isBank) {
         const result: AxiosResponse = await authInstance.get('/bank/');
         setUser(result.data);
+        console.log(result.data);
       } else {
         const result: AxiosResponse = await authInstance.get('/user/');
         setUser(result.data);
+        console.log(result.data);
       }
     } catch (error) {
       console.log(error);

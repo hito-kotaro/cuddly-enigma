@@ -26,7 +26,7 @@ const HomeTemplate: VFC<Props> = (props) => {
     <div>
       <div className="h-5" />
       <div className="flex justify-center">
-        <UserCard name={user.name} hmt={user.hmt} />
+        <UserCard user={user} />
         {/* <UserCard name={user.name} hmt={1000}} /> */}
       </div>
       <div className="h-5" />
