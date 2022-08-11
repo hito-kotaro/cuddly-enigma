@@ -1,6 +1,7 @@
 import React, { VFC } from 'react';
-import Avatar from '@mui/material/Avatar';
+// import Avatar from '@mui/material/Avatar';
 import { BsFlower1 } from 'react-icons/bs';
+import NameLabel from '../../molecules/NameLabel/NameLabel';
 
 type Props = {
   name: string;
@@ -11,7 +12,8 @@ const UserCard: VFC<Props> = (props) => {
   const { name, hmt } = props;
   return (
     <div className="w-11/12 h-40 rounded-lg p-2 ring-1 ring-black ring-opacity-10 ">
-      <Avatar alt={name} src="/static/images/avatar/1.jpg" />
+      {/* <Avatar alt={name} src="/static/images/avatar/1.jpg" /> */}
+      <NameLabel name={name} path='"/static/images/avatar/1.jpg"' />
       <div className="h-3" />
       <div className="text-center">
         <span className="text-2xl"> {hmt} </span>
