@@ -1,4 +1,5 @@
 import { AxiosResponse } from 'axios';
+import toast from 'react-hot-toast';
 import { axiosInstance } from '../libs/axiosInstance';
 import useGasState from '../stores/GasState/useGasState';
 
@@ -7,10 +8,9 @@ const useBankApi = () => {
   const fetchGasValue = async () => {
     try {
       const result: AxiosResponse = await axiosInstance.get('/bank/gas');
-      console.log(result.data);
       setGas(result.data);
     } catch (error) {
-      console.log(error);
+      toast.error('取得失敗');
     }
   };
   return { fetchGasValue };

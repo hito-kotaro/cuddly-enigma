@@ -54,7 +54,6 @@ const RequestTemplate = () => {
       public: isChecked,
       is_bank: isBank,
     };
-    console.log(newRequest);
     titleInputHandler.clear();
     descInputHandler.clear();
     rewardInputHandler.clear();

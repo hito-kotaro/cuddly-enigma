@@ -1,4 +1,5 @@
 import { AxiosResponse } from 'axios';
+import { toast } from 'react-hot-toast';
 import { createAxiosTokenInstance } from '../libs/axiosInstance';
 import useBankState from '../stores/BankState/useBankState';
 import useUserListState from '../stores/UserState/useUserListState';
@@ -16,14 +17,12 @@ const useUserApi = () => {
       if (isBank) {
         const result: AxiosResponse = await authInstance.get('/bank/');
         setUser(result.data);
-        console.log(result.data);
       } else {
         const result: AxiosResponse = await authInstance.get('/user/');
         setUser(result.data);
-        console.log(result.data);
       }
     } catch (error) {
-      console.log(error);
+      toast.error('取得失敗');
     }
   };
 
@@ -41,7 +40,7 @@ const useUserApi = () => {
       );
       setUserList(options);
     } catch (error) {
-      console.log(error);
+      toast.error('取得失敗');
     }
   };
   return { fetchUser, fetchUserList };

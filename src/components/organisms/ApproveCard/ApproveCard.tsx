@@ -1,6 +1,5 @@
 import React, { VFC } from 'react';
 import useUserState from '../../../stores/UserState/useUserState';
-import Badge from '../../atoms/Badge/Badge';
 import HanamaruButton from '../../atoms/Button/HanamaruButton/HanamaruButton';
 import NameLabel from '../../molecules/NameLabel/NameLabel';
 import RewardDisplay from '../../molecules/RewardDisplay/RewardDisplay';

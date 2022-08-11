@@ -1,6 +1,4 @@
 import React, { VFC } from 'react';
-import useUserState from '../../../stores/UserState/useUserState';
-import Badge from '../../atoms/Badge/Badge';
 import HanamaruButton from '../../atoms/Button/HanamaruButton/HanamaruButton';
 import NameLabel from '../../molecules/NameLabel/NameLabel';
 import RewardDisplay from '../../molecules/RewardDisplay/RewardDisplay';
@@ -18,9 +16,7 @@ type Props = {
 };
 
 const RequestCard: VFC<Props> = (props) => {
-  const { owner, ownerId, title, reward, gas, publicRequest, status, onClick } =
-    props;
-  const { user } = useUserState();
+  const { owner, title, reward, gas, publicRequest, status, onClick } = props;
   return (
     <>
       <div className="h-5" />
