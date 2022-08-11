@@ -17,7 +17,7 @@ const useLogin = () => {
     try {
       setIsLoading(true);
       const result: AxiosResponse = await axiosInstance.post('/auth/', params);
-      if (params.isBank) {
+      if (params.is_bank) {
         setIsBank(true);
       } else {
         setIsBank(false);

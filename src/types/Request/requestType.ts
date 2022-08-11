@@ -9,6 +9,7 @@ export type requestType = {
   status: boolean;
   created_at: string;
   updated_at: string;
+  is_bank: boolean;
 };
 
 export type createRequestType = {
@@ -17,4 +18,5 @@ export type createRequestType = {
   reward: number;
   order_id: number;
   public: boolean;
+  is_bank: boolean;
 };

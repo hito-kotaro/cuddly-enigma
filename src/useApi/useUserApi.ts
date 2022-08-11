@@ -3,7 +3,7 @@ import { createAxiosTokenInstance } from '../libs/axiosInstance';
 import useBankState from '../stores/BankState/useBankState';
 import useUserListState from '../stores/UserState/useUserListState';
 import useUserState from '../stores/UserState/useUserState';
-import { userListType, userOptionType, userType } from '../types/User/userType';
+import { userListType, userOptionType } from '../types/User/userType';
 
 const useUserApi = () => {
   const authInstance = createAxiosTokenInstance();
@@ -14,21 +14,10 @@ const useUserApi = () => {
   const fetchUser = async () => {
     try {
       if (isBank) {
-        console.log(isBank);
         const result: AxiosResponse = await authInstance.get('/bank/');
-        console.log(result.data.bank);
-        const { bank } = result.data;
-        const bankUser: userType = {
-          id: bank.id,
-          name: bank.name,
-          hmt: bank.hmt,
-          isBank: true,
-        };
-        setUser(bankUser);
+        setUser(result.data);
       } else {
-        console.log(isBank);
         const result: AxiosResponse = await authInstance.get('/user/');
-        console.log(result.data);
         setUser(result.data);
       }
     } catch (error) {
@@ -39,7 +28,6 @@ const useUserApi = () => {
   const fetchUserList = async () => {
     try {
       const result: AxiosResponse = await authInstance.get('/user/all');
-      console.log(result.data.users);
       const options: userOptionType[] = result.data.users.map(
         (u: userListType) => {
           const tmp: userOptionType = {

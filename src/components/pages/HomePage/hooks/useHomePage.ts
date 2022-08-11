@@ -36,6 +36,7 @@ const useHomePage = () => {
     status: false,
     created_at: '',
     updated_at: '',
+    is_bank: false,
   });
 
   const positions = {

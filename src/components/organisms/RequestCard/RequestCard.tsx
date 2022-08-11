@@ -46,7 +46,7 @@ const RequestCard: VFC<Props> = (props) => {
         <HanamaruButton
           label="done"
           onClick={onClick}
-          isDisabled={!!(status === false || ownerId === user.id)}
+          isDisabled={!!(status === false)}
         />
         <div className="ml-auto">
           <RewardDisplay reward={reward} gas={gas} />

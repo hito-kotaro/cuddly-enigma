@@ -15,6 +15,7 @@ import { createRequestType } from '../../../../types/Request/requestType';
 import type { userOptionType } from '../../../../types/User/userType';
 import useUserListState from '../../../../stores/UserState/useUserListState';
 import useUserState from '../../../../stores/UserState/useUserState';
+import useBankState from '../../../../stores/BankState/useBankState';
 
 const RequestTemplate = () => {
   const [isChecked, setIsChecked] = useState(false);
@@ -27,13 +28,14 @@ const RequestTemplate = () => {
   const { userList } = useUserListState();
   const { user } = useUserState();
   const [filterd, setFilterd] = useState<userOptionType[]>(userList);
+  const { isBank } = useBankState();
 
   const onChange = (value: { label: string; id: number }) => {
     setVal(value);
   };
 
   useEffect(() => {
-    if (user.isBank) {
+    if (isBank) {
       setFilterd(userList);
     } else {
       const filter = userList.filter((u: userOptionType) => {
@@ -50,7 +52,9 @@ const RequestTemplate = () => {
       reward: Number(rewardInputHandler.valueNum),
       order_id: isChecked ? -1 : val.id,
       public: isChecked,
+      is_bank: isBank,
     };
+    console.log(newRequest);
     titleInputHandler.clear();
     descInputHandler.clear();
     rewardInputHandler.clear();

@@ -19,7 +19,7 @@ const LoginForm: VFC<Props> = (props) => {
     const params: loginParams = {
       name: nameInputHandler.value,
       password: passInputHandler.value,
-      isBank,
+      is_bank: isBank,
     };
     login(params);
   };
