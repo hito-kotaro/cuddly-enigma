@@ -1,6 +1,6 @@
 import { atom } from 'recoil';
 
-export const isSping = atom<boolean>({
+export const spinState = atom<boolean>({
   key: 'IS_SPIN',
   default: false,
 });
