@@ -3,7 +3,10 @@ import axios from 'axios';
 export const axiosInstance = axios.create({
   // baseURL: 'http://192.168.0.12:8000/',
   // baseURL: 'http://localhost:8000/',
-  baseURL: 'https://hanamaru-hub.herokuapp.com/',
+  baseURL:
+    process.env.NODE_ENV === 'production'
+      ? 'https://hanamaru-hub.herokuapp.com/'
+      : 'http://localhost:8000',
   headers: {
     'Content-Type': 'application/json',
   },
