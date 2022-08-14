@@ -90,7 +90,7 @@ const RequestTemplate = () => {
         <Button onClick={create} variant="contained" disabled={isDisable}>
           依頼発行
         </Button>
-        <div className="ml-auto">所持HMT:{user.hmt}</div>
+        <div className="ml-auto">所持HMT:{user.hmt.toFixed(2)}</div>
       </div>
       <div className="h-3" />
 

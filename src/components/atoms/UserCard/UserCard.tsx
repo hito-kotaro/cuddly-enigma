@@ -16,7 +16,7 @@ const UserCard: VFC<Props> = (props) => {
       <NameLabel name={user.name} path='"/static/images/avatar/1.jpg"' />
       <div className="h-3" />
       <div className="text-center">
-        <span className="text-2xl"> {user.hmt} </span>
+        <span className="text-2xl"> {user.hmt.toFixed(2)} </span>
         <span className="text-sm">HMT</span>
       </div>
       <div className="flex justify-end">
