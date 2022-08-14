@@ -99,7 +99,7 @@ const RequestTemplate = () => {
           <Grid item xs={8}>
             <TextField
               fullWidth
-              label="Title"
+              label="タイトル"
               variant="outlined"
               onChange={titleInputHandler.onChange}
               value={titleInputHandler.value}
@@ -108,7 +108,7 @@ const RequestTemplate = () => {
           <Grid item xs={4}>
             <TextField
               fullWidth
-              label="Reward"
+              label="報酬"
               variant="outlined"
               onChange={rewardInputHandler.onChange}
               value={rewardInputHandler.valueNum}
@@ -127,7 +127,7 @@ const RequestTemplate = () => {
         isOptionEqualToValue={(option, value) => option.id === value.id}
         onChange={(e, v) => onChange(v ?? { label: '', id: -1 })}
         renderInput={(params) => (
-          <TextField {...params} fullWidth label="User" />
+          <TextField {...params} fullWidth label="対象者" />
         )}
       />
       <FormControlLabel
@@ -135,7 +135,7 @@ const RequestTemplate = () => {
         label="この依頼を全員に公開する"
       />
       <TextField
-        label="Comment"
+        label="コメント"
         fullWidth
         multiline
         minRows={10}
