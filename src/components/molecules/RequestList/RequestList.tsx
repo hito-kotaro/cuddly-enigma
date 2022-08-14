@@ -12,7 +12,7 @@ const RequestList: VFC<Props> = (props) => {
   const { requests, onClick } = props;
 
   return (
-    <div className="ring-1 ring-black ring-opacity-10">
+    <div className="ring-opacity-10">
       {requests.length <= 0 ? (
         '該当する依頼がありません'
       ) : (
