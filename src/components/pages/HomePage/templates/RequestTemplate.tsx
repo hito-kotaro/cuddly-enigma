@@ -87,7 +87,9 @@ const RequestTemplate = () => {
     <div className="px-2">
       <div className="h-3" />
       <div className="flex">
-        <div>依頼を発行する</div>
+        <Button onClick={create} variant="contained" disabled={isDisable}>
+          依頼発行
+        </Button>
         <div className="ml-auto">所持HMT:{user.hmt}</div>
       </div>
       <div className="h-3" />
@@ -142,11 +144,11 @@ const RequestTemplate = () => {
         onChange={descInputHandler.onChange}
       />
       <div className="h-5" />
-      <div className="flex justify-center w-11/12 mx-auto">
+      {/* <div className="flex justify-center w-11/12 mx-auto pb-10">
         <Button onClick={create} variant="contained" disabled={isDisable}>
           依頼発行
         </Button>
-      </div>
+      </div> */}
     </div>
   );
 };
