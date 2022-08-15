@@ -17,7 +17,7 @@ const HomeTemplate: VFC<Props> = (props) => {
   // requestsが更新されるたびにフィルター
   useEffect(() => {
     const tmp: requestType[] = requests.filter((r: requestType) => {
-      return r.order_id === Number(localStorage.getItem('id'));
+      return r.order_id === user.id;
     });
     setFiltered(tmp);
   }, [requests]);
