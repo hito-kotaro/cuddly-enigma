@@ -1,6 +1,7 @@
 import React, { VFC } from 'react';
 // import Avatar from '@mui/material/Avatar';
 import { BsFlower1 } from 'react-icons/bs';
+import useSpingState from '../../../stores/SpingState/useSpinState';
 import { userType } from '../../../types/User/userType';
 import NameLabel from '../../molecules/NameLabel/NameLabel';
 
@@ -10,6 +11,7 @@ type Props = {
 
 const UserCard: VFC<Props> = (props) => {
   const { user } = props;
+  const { isSpin, setIsSpin } = useSpingState();
   return (
     <div className="w-11/12 h-40 rounded-lg p-2 ring-1 ring-black ring-opacity-10 ">
       {/* <Avatar alt={name} src="/static/images/avatar/1.jpg" /> */}
@@ -19,8 +21,15 @@ const UserCard: VFC<Props> = (props) => {
         <span className="text-2xl"> {user.hmt.toFixed(2)} </span>
         <span className="text-sm">HMT</span>
       </div>
+
       <div className="flex justify-end">
-        <BsFlower1 size={58} />
+        <button
+          type="button"
+          className={isSpin ? 'animate-spin' : ''}
+          onClick={() => setIsSpin(!isSpin)}
+        >
+          <BsFlower1 size={58} />
+        </button>
       </div>
     </div>
   );
