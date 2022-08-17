@@ -33,7 +33,7 @@ const RequestCard: VFC<Props> = (props) => {
       <div className="h-2" />
       <div className="flex font-mono">
         <div className="text-lg leading-6 w-20">Owner:</div>
-        <NameLabel name={owner} path="/dummy/icon" />
+        <NameLabel name={owner} />
       </div>
 
       <div className="h-3" />

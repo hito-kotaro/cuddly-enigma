@@ -1,25 +1,31 @@
 import React, { VFC } from 'react';
-import useUserState from '../../../stores/UserState/useUserState';
 import HanamaruButton from '../../atoms/Button/HanamaruButton/HanamaruButton';
 import NameLabel from '../../molecules/NameLabel/NameLabel';
 import RewardDisplay from '../../molecules/RewardDisplay/RewardDisplay';
 
 type Props = {
   applicant: string;
-  applicantId: number;
   title: string;
   reward: number;
   gas: number;
   status: string;
+  isApproveble: boolean;
   onClick: () => void;
 };
 
 const ApproveCard: VFC<Props> = (props) => {
-  const { applicant, applicantId, title, reward, gas, status, onClick } = props;
-  const { user } = useUserState();
+  const { applicant, isApproveble, title, reward, gas, status, onClick } =
+    props;
+
   return (
     <>
-      <div className="h-5" />
+      <div className="flex font-mono">
+        {/* <div className="text-lg leading-6">申請者:</div> */}
+        <NameLabel name={applicant} />
+      </div>
+
+      <div className="h-6" />
+
       <div className="flex border-b-1  border-gray-300 ">
         <div className="text-2xl leading-8  whitespace-nowrap truncate">
           {title}
@@ -33,19 +39,13 @@ const ApproveCard: VFC<Props> = (props) => {
         </div>
       </div>
 
-      <div className="h-2" />
-      <div className="flex font-mono">
-        <div className="text-lg leading-6">Applicant:</div>
-        <NameLabel name={applicant} path="/dummy/icon" />
-      </div>
-
-      <div className="h-3" />
+      <div className="h-5" />
 
       <div className="flex">
         <HanamaruButton
           label="approve"
           onClick={onClick}
-          isDisabled={!!(status === 'approved' || applicantId === user.id)}
+          isDisabled={isApproveble}
         />
         <div className="ml-auto">
           <RewardDisplay reward={reward} gas={gas} />

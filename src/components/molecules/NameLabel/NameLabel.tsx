@@ -1,17 +1,20 @@
 import React, { VFC } from 'react';
 import { Avatar } from '@mui/material';
+import stringToColor from '../../../libs/stringToColor';
 
 type Props = {
   name: string;
-  path: string;
 };
 const NameLabel: VFC<Props> = (props) => {
-  const { name, path } = props;
+  const { name } = props;
+
   return (
     <div className="flex">
-      <Avatar alt={name} src={path} sx={{ width: 24, height: 24 }} />
+      <Avatar sx={{ width: 32, height: 32, bgcolor: stringToColor(name) }}>
+        {name ? name[0].toUpperCase() : ''}
+      </Avatar>
       <div className="w-2" />
-      <div className="leading-6 font-mono text-lg">{name}</div>
+      <div className=" leading-8 font-mono text-lg">{name}</div>
     </div>
   );
 };

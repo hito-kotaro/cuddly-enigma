@@ -1,3 +1,4 @@
+import React, { VFC } from 'react';
 import {
   ListItem,
   ListItemAvatar,
@@ -5,7 +6,7 @@ import {
   ListItemText,
   Typography,
 } from '@mui/material';
-import React, { VFC } from 'react';
+import stringToColor from '../../../libs/stringToColor';
 
 type Props = {
   id: number;
@@ -22,7 +23,9 @@ const PrimaryListItem: VFC<Props> = (props) => {
   return (
     <ListItem key={id} alignItems="flex-start" onClick={() => onClick(id)}>
       <ListItemAvatar>
-        <Avatar alt={name} src="/static/images/avatar/1.jpg" />
+        <Avatar sx={{ bgcolor: stringToColor(name) }}>
+          {name ? name[0].toUpperCase() : ''}
+        </Avatar>
       </ListItemAvatar>
       <ListItemText
         primary={title}

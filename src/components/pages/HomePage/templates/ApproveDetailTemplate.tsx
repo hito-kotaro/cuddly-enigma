@@ -1,8 +1,9 @@
 import { Button } from '@mui/material';
-import React, { VFC } from 'react';
+import React, { useState, VFC } from 'react';
 import { IoChevronBack } from 'react-icons/io5';
 import useGasState from '../../../../stores/GasState/useGasState';
 import useTemplateState from '../../../../stores/TemplatesState/useTemplateState';
+import useUserState from '../../../../stores/UserState/useUserState';
 import {
   approveType,
   updateApproveType,
@@ -13,6 +14,10 @@ import ApproveCard from '../../../organisms/ApproveCard/ApproveCard';
 type Props = { detail: approveType };
 const ApproveDetailTemplate: VFC<Props> = (props) => {
   const { detail } = props;
+  const { user } = useUserState();
+  const [isApproveble, setIsApprovable] = useState(
+    detail.status !== 'open' || detail.applicant_id === user.id,
+  );
   const { updateApprove } = useApproveApi();
   const { open } = useTemplateState();
   const { gas } = useGasState();
@@ -44,11 +49,11 @@ const ApproveDetailTemplate: VFC<Props> = (props) => {
 
         <ApproveCard
           applicant={detail.applicant}
-          applicantId={detail.applicant_id}
           title={detail.title}
           reward={detail.reward}
           status={detail.status}
           gas={Number(tax)}
+          isApproveble={isApproveble}
           onClick={onClick}
         />
 
