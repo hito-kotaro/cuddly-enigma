@@ -59,7 +59,11 @@ const ListTemplate: VFC<Props> = (props) => {
           </FormControl>
         </div>
       </div>
-      <RequestList requests={filterd} onClick={onClick} />
+      <RequestList
+        requests={filterd}
+        emptyMessage="依頼がありません"
+        onClick={onClick}
+      />
       <div className="h-40" />
     </>
   );

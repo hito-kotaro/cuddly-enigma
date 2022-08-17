@@ -59,7 +59,11 @@ const ApproveTemplate: VFC<Props> = (props) => {
           </FormControl>
         </div>
       </div>
-      <ApproveList approves={filterd} onClick={onClick} />
+      <ApproveList
+        approves={filterd}
+        emptyMessage="承認待ちの依頼はありません"
+        onClick={onClick}
+      />
       <div className="h-40" />
     </>
   );

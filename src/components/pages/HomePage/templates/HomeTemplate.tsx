@@ -3,7 +3,6 @@ import UserCard from '../../../atoms/UserCard/UserCard';
 import RequestList from '../../../molecules/RequestList/RequestList';
 import type { requestType } from '../../../../types/Request/requestType';
 import useUserState from '../../../../stores/UserState/useUserState';
-import EmptyStateIcon from '../../../atoms/EmptyStateIcon/EmptyStateIcon';
 
 type Props = {
   requests: requestType[];
@@ -18,8 +17,6 @@ const HomeTemplate: VFC<Props> = (props) => {
   // requestsが更新されるたびにフィルター
   useEffect(() => {
     const tmp: requestType[] = requests.filter((r: requestType) => {
-      console.log(user.id);
-      console.log(r.order_id === user.id);
       return r.order_id === user.id && r.status;
     });
     setFiltered(tmp);
@@ -33,7 +30,11 @@ const HomeTemplate: VFC<Props> = (props) => {
       </div>
       <div className="h-5" />
 
-      <RequestList requests={filtered} onClick={onClick} />
+      <RequestList
+        requests={filtered}
+        emptyMessage="あなたへの依頼はありません"
+        onClick={onClick}
+      />
       <div className="h-40" />
     </div>
   );
