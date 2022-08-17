@@ -2,6 +2,7 @@ import React, { VFC } from 'react';
 import { List, Divider } from '@mui/material';
 import { requestType } from '../../../types/Request/requestType';
 import PrimaryListItem from '../../atoms/PrimaryListItem/PrimaryListItem';
+import EmptyStateIcon from '../../atoms/EmptyStateIcon/EmptyStateIcon';
 
 type Props = {
   requests: requestType[];
@@ -14,7 +15,7 @@ const RequestList: VFC<Props> = (props) => {
   return (
     <div className="ring-opacity-10">
       {requests.length <= 0 ? (
-        '該当する依頼がありません'
+        <EmptyStateIcon />
       ) : (
         <List sx={{ width: '100%', bgcolor: 'background.paper' }}>
           {requests.map((r: requestType) => (
