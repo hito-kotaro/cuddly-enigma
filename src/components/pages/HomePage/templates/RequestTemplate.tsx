@@ -8,6 +8,7 @@ import {
   Grid,
   TextField,
 } from '@mui/material';
+import { BiWallet } from 'react-icons/bi';
 import useInput from '../../../atoms/Input/hooks/useInput';
 import useInputNumber from '../../../atoms/Input/hooks/useInputNumber';
 import useRequestApi from '../../../../useApi/useRequestApi';
@@ -90,7 +91,13 @@ const RequestTemplate = () => {
         <Button onClick={create} variant="contained" disabled={isDisable}>
           依頼発行
         </Button>
-        <div className="ml-auto">所持HMT:{user.hmt.toFixed(2)}</div>
+        <div className="ml-auto">
+          <div className="flex">
+            <BiWallet size={24} />
+            <div className="w-2" />
+            <span className="font-bold">{user.hmt.toFixed(2)}</span>
+          </div>
+        </div>
       </div>
       <div className="h-3" />
 

@@ -10,10 +10,12 @@ const HomeHeader = () => {
       <div>
         <HeaderLogo />
       </div>
-      <div className="ml-auto leading-10">
-        現在のGas:
+      {/* <div className="ml-auto leading-10">現在のGas:</div> */}
+
+      <fieldset className=" shadow-inner rounded-lg w-20 text-center mx-auto">
+        <legend className="font-mono text-gray-500">tax</legend>
         <span className="font-semibold text-red-500">{gas * 100}%</span>
-      </div>
+      </fieldset>
       <div className="ml-auto">
         <MenuButton />
       </div>
