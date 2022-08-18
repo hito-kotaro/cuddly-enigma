@@ -14,7 +14,7 @@ const ApproveList: VFC<Props> = (props) => {
   const { approves, emptyMessage, onClick } = props;
 
   return (
-    <div className="ring-1 ring-black ring-opacity-10">
+    <div>
       {approves.length <= 0 ? (
         <EmptyStateIcon message={emptyMessage} />
       ) : (

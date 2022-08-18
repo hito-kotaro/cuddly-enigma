@@ -14,7 +14,7 @@ const RequestList: VFC<Props> = (props) => {
   const { requests, emptyMessage, onClick } = props;
 
   return (
-    <div className="ring-opacity-10">
+    <div>
       {requests.length <= 0 ? (
         <div className="mt-10">
           <EmptyStateIcon message={emptyMessage} />
