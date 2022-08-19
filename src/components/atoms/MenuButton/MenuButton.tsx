@@ -4,20 +4,21 @@ import { HiMenu } from 'react-icons/hi';
 import { Menu, MenuItem } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import useLogin from '../../../hooks/useLogin';
+import useTemplateState from '../../../stores/TemplatesState/useTemplateState';
 
 const MenuButton = () => {
   const { logout } = useLogin();
-  const [open, setOpen] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-  const navigate = useNavigate();
+  const { open } = useTemplateState();
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
-    setOpen(true);
+    setMenuOpen(true);
   };
 
   const handleClose = () => {
     setAnchorEl(null);
-    setOpen(false);
+    setMenuOpen(false);
   };
 
   const handleLogout = () => {
@@ -25,18 +26,19 @@ const MenuButton = () => {
     logout();
   };
 
-  const handleIssueRequest = () => {
+  const handleUserUpdate = () => {
     handleClose();
-    navigate('/request');
+    open('userUpdate');
+    console.log('hello');
   };
 
   return (
     <div>
       <Button
         id="basic-button"
-        aria-controls={open ? 'basic-menu' : undefined}
+        aria-controls={menuOpen ? 'basic-menu' : undefined}
         aria-haspopup="true"
-        aria-expanded={open ? 'true' : undefined}
+        aria-expanded={menuOpen ? 'true' : undefined}
         onClick={handleClick}
       >
         <HiMenu size={32} />
@@ -44,13 +46,13 @@ const MenuButton = () => {
       <Menu
         id="basic-menu"
         anchorEl={anchorEl}
-        open={open}
+        open={menuOpen}
         onClose={handleClose}
         MenuListProps={{
           'aria-labelledby': 'basic-button',
         }}
       >
-        <MenuItem onClick={handleIssueRequest}>依頼の発行</MenuItem>
+        <MenuItem onClick={handleUserUpdate}>ユーザー更新</MenuItem>
         <MenuItem onClick={handleLogout}>Logout</MenuItem>
       </Menu>
     </div>

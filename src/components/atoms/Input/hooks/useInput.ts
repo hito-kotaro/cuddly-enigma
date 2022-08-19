@@ -1,7 +1,7 @@
 import React, { useState, useCallback } from 'react';
 
-const useInput = () => {
-  const [value, setValue] = useState('');
+const useInput = (defaultVal?: string) => {
+  const [value, setValue] = useState(defaultVal ?? '');
 
   const onChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {

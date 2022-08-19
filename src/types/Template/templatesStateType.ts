@@ -5,4 +5,5 @@ export type templateStateType = {
   request: boolean;
   approve: boolean;
   approveDetail: boolean;
+  userUpdate: boolean;
 };

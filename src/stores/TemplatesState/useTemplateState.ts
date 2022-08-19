@@ -13,6 +13,7 @@ const useTemplateState = () => {
       request: template === 'request',
       approve: template === 'approve',
       approveDetail: template === 'approveDetail',
+      userUpdate: template === 'userUpdate',
     };
 
     setTemplates(newState);
@@ -26,6 +27,7 @@ const useTemplateState = () => {
       request: false,
       approve: false,
       approveDetail: false,
+      userUpdate: false,
     };
     setTemplates(newState);
   };

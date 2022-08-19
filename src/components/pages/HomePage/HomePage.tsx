@@ -16,13 +16,15 @@ import ApproveTemplate from './templates/ApproveTemplate';
 import useApproveListState from '../../../stores/Approves/useApproveListState';
 import ApproveDetailTemplate from './templates/ApproveDetailTemplate';
 import useBankApi from '../../../useApi/useBankApi';
+import UserUpdateTemplate from './templates/UserUpdateTemplate';
 
 const HomePage = () => {
   const { isSafari } = useUserAgentState();
   const { templates } = useTemplateState();
   const { requestList } = useRequestListState();
   const { approveList } = useApproveListState();
-  const { home, detail, request, list, approve, approveDetail } = templates;
+  const { home, detail, request, list, approve, approveDetail, userUpdate } =
+    templates;
   const {
     requestDetailData,
     approveDetailData,
@@ -62,6 +64,10 @@ const HomePage = () => {
 
         <div className={`${approveDetail ? display : hidden}`}>
           <ApproveDetailTemplate detail={approveDetailData} />
+        </div>
+
+        <div className={`${userUpdate ? display : hidden}`}>
+          <UserUpdateTemplate />
         </div>
 
         <div className={`${list ? display : hidden} h-screen overflow-scroll`}>

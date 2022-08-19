@@ -8,6 +8,7 @@ const defaultState = {
   request: false,
   approve: false,
   approveDetail: false,
+  userUpdate: false,
 };
 
 export const templateState = atom<templateStateType>({
