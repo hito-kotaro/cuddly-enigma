@@ -1,5 +1,6 @@
 import { Modal, Box, TextField, Button } from '@mui/material';
-import React, { VFC } from 'react';
+import React, { useEffect, useState, VFC } from 'react';
+import useUserState from '../../../../stores/UserState/useUserState';
 import { modalType } from '../../../../types/Modal/modalType';
 import { InputHandlerType } from '../../../atoms/Input/types/InputHandlerType';
 import { style } from '../modalStyle';
@@ -10,11 +11,30 @@ type Props = {
 };
 const UserNameUpdModal: VFC<Props> = (props) => {
   const { modal, inputHandler } = props;
+  const [isDisable, setIsDisable] = useState(false);
+  const { user } = useUserState();
 
   const clearClose = () => {
     inputHandler.clear();
     modal.closeHandler();
   };
+
+  const validateInput = () => {
+    // 特殊文字チェックは後で
+    if (
+      inputHandler.value === '' ||
+      inputHandler.value === user.name ||
+      inputHandler.value.length > 20
+    ) {
+      setIsDisable(true);
+    } else {
+      setIsDisable(false);
+    }
+  };
+
+  useEffect(() => {
+    validateInput();
+  }, [inputHandler.value]);
 
   return (
     <Modal
@@ -43,7 +63,7 @@ const UserNameUpdModal: VFC<Props> = (props) => {
           </div>
           <div className="text-center">
             <Button
-              disabled={false}
+              disabled={isDisable}
               variant="contained"
               onClick={() => console.log(inputHandler.value)}
             >
