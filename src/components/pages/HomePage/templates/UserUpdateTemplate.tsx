@@ -7,6 +7,7 @@ import LinkButton from '../../../atoms/LinkButton/LinkButton';
 import useModal from '../../../organisms/Modal/useModal';
 import UserNameUpdModal from '../../../organisms/Modal/UserNameUpdModal/UserNameUpdModal';
 import { modalType } from '../../../../types/Modal/modalType';
+import UserPwdUpdModal from '../../../organisms/Modal/UserPwdUpdModal/UserPwdUpdModal';
 
 const UserUpdateTemplate = () => {
   const { user } = useUserState();
@@ -60,64 +61,12 @@ const UserUpdateTemplate = () => {
     <div>
       <UserNameUpdModal modal={nameUpdModal} inputHandler={nameInputHandler} />
 
-      <Modal
-        open={pwdUpdModal.isOpen}
-        onClose={pwdUpdModal.closeHandler}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
-        <Box sx={style}>
-          <TextField
-            fullWidth
-            type="password"
-            label="現在のパスワード"
-            variant="outlined"
-            placeholder="Enter Current Password"
-            onChange={currentPwdHandler.onChange}
-            value={currentPwdHandler.value}
-          />
-
-          <div className="h-10" />
-
-          <TextField
-            fullWidth
-            type="password"
-            label="新しいパスワード"
-            variant="outlined"
-            placeholder="Enter new password"
-            onChange={newPwdHandler.onChange}
-            value={newPwdHandler.value}
-          />
-          <div className="h-3 " />
-          <TextField
-            fullWidth
-            type="password"
-            label="新しいパスワードを再入力"
-            variant="outlined"
-            placeholder="Enter new password confirm"
-            onChange={confirmPwdHandler.onChange}
-            value={confirmPwdHandler.value}
-          />
-
-          <div className="h-5" />
-          <div className="flex justify-around">
-            <div className="text-center">
-              <Button variant="contained" onClick={pwdUpdModal.closeHandler}>
-                キャンセル
-              </Button>
-            </div>
-            <div className="text-center">
-              <Button
-                disabled={isDisable}
-                variant="contained"
-                onClick={() => console.log(nameInputHandler.value)}
-              >
-                変更
-              </Button>
-            </div>
-          </div>
-        </Box>
-      </Modal>
+      <UserPwdUpdModal
+        modal={pwdUpdModal}
+        currentPwd={currentPwdHandler}
+        newPwd={newPwdHandler}
+        confirmPwd={confirmPwdHandler}
+      />
       <div className="h-10" />
       <div className="flex justify-center">
         <Avatar
