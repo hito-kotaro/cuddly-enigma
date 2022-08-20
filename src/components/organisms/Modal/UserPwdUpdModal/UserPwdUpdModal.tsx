@@ -95,7 +95,7 @@ const UserPwdUpdModal: VFC<Props> = (props) => {
         <div className="h-5" />
         <div className="flex justify-around">
           <div className="text-center">
-            <Button variant="contained" onClick={clearClose}>
+            <Button variant="contained" onClick={clearClose} color="warning">
               キャンセル
             </Button>
           </div>

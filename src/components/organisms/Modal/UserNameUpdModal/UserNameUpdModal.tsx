@@ -57,7 +57,11 @@ const UserNameUpdModal: VFC<Props> = (props) => {
         <div className="h-5" />
         <div className="flex justify-around">
           <div className="text-center">
-            <Button variant="contained" onClick={modal.closeHandler}>
+            <Button
+              variant="contained"
+              onClick={modal.closeHandler}
+              color="warning"
+            >
               キャンセル
             </Button>
           </div>

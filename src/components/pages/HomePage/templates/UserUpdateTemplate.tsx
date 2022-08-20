@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { Avatar, Box, Button, Modal, TextField } from '@mui/material';
+import { Avatar, Button } from '@mui/material';
 import stringToColor from '../../../../libs/stringToColor';
 import useInput from '../../../atoms/Input/hooks/useInput';
 import useUserState from '../../../../stores/UserState/useUserState';
-import LinkButton from '../../../atoms/LinkButton/LinkButton';
 import useModal from '../../../organisms/Modal/useModal';
 import UserNameUpdModal from '../../../organisms/Modal/UserNameUpdModal/UserNameUpdModal';
 import { modalType } from '../../../../types/Modal/modalType';
@@ -12,11 +11,9 @@ import UserPwdUpdModal from '../../../organisms/Modal/UserPwdUpdModal/UserPwdUpd
 const UserUpdateTemplate = () => {
   const { user } = useUserState();
 
+  // モーダルのステート管理
   const nameUpdModal: modalType = useModal();
   const pwdUpdModal: modalType = useModal();
-
-  // ユーザー名更新モーダルのボタン用
-  const [isDisable, setIsDisable] = useState(true);
 
   // ユーザー名更新モーダルのインプットハンドラ
   const nameInputHandler = useInput(user.name);
@@ -25,37 +22,6 @@ const UserUpdateTemplate = () => {
   const currentPwdHandler = useInput();
   const newPwdHandler = useInput();
   const confirmPwdHandler = useInput();
-
-  // Material UIのModalのスタイル
-  // 位置調整などめんどくさそうなので公式をこぴぺ
-  const style = {
-    position: 'absolute' as 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    width: 400,
-    bgcolor: 'background.paper',
-    // border: '2px solid #000',
-    boxShadow: 24,
-    p: 4,
-  };
-
-  const validateInput = () => {
-    // 特殊文字チェックは後で
-    if (
-      nameInputHandler.value === '' ||
-      nameInputHandler.value === user.name ||
-      nameInputHandler.value.length > 20
-    ) {
-      setIsDisable(true);
-    } else {
-      setIsDisable(false);
-    }
-  };
-
-  useEffect(() => {
-    validateInput();
-  }, [nameInputHandler]);
 
   return (
     <div>
@@ -82,17 +48,17 @@ const UserUpdateTemplate = () => {
 
       <div className="h-5" />
       <div className="flex justify-center">
-        <LinkButton onClick={nameUpdModal.openHandler}>
-          ユーザー名を変更
-        </LinkButton>
+        <Button variant="contained" onClick={nameUpdModal.openHandler}>
+          <span className="text-lg">ユーザー名を変更</span>
+        </Button>
       </div>
 
       <div className="h-5" />
 
       <div className="flex justify-center">
-        <LinkButton onClick={pwdUpdModal.openHandler}>
-          パスワードを変更
-        </LinkButton>
+        <Button variant="contained" onClick={pwdUpdModal.openHandler}>
+          <span className="text-lg">パスワードを変更</span>
+        </Button>
       </div>
     </div>
   );
