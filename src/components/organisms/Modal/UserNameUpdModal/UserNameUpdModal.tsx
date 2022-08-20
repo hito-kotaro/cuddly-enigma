@@ -2,6 +2,8 @@ import { Modal, Box, TextField, Button } from '@mui/material';
 import React, { useEffect, useState, VFC } from 'react';
 import useUserState from '../../../../stores/UserState/useUserState';
 import { modalType } from '../../../../types/Modal/modalType';
+import { userType, userUpdateNameType } from '../../../../types/User/userType';
+import useUserApi from '../../../../useApi/useUserApi';
 import { InputHandlerType } from '../../../atoms/Input/types/InputHandlerType';
 import { style } from '../modalStyle';
 
@@ -12,10 +14,19 @@ type Props = {
 const UserNameUpdModal: VFC<Props> = (props) => {
   const { modal, inputHandler } = props;
   const [isDisable, setIsDisable] = useState(false);
+  const { updateUserName } = useUserApi();
   const { user } = useUserState();
 
   const clearClose = () => {
     inputHandler.clear();
+    modal.closeHandler();
+  };
+
+  const onClickSubmit = () => {
+    const params: userUpdateNameType = {
+      name: inputHandler.value,
+    };
+    updateUserName(params);
     modal.closeHandler();
   };
 
@@ -69,7 +80,7 @@ const UserNameUpdModal: VFC<Props> = (props) => {
             <Button
               disabled={isDisable}
               variant="contained"
-              onClick={() => console.log(inputHandler.value)}
+              onClick={onClickSubmit}
             >
               変更
             </Button>

@@ -4,7 +4,12 @@ import { createAxiosTokenInstance } from '../libs/axiosInstance';
 import useBankState from '../stores/BankState/useBankState';
 import useUserListState from '../stores/UserState/useUserListState';
 import useUserState from '../stores/UserState/useUserState';
-import { userListType, userOptionType } from '../types/User/userType';
+import {
+  userListType,
+  userOptionType,
+  userUpdateNameType,
+  userUpdatePwdType,
+} from '../types/User/userType';
 
 const useUserApi = () => {
   const authInstance = createAxiosTokenInstance();
@@ -43,7 +48,35 @@ const useUserApi = () => {
       toast.error('取得失敗');
     }
   };
-  return { fetchUser, fetchUserList };
+
+  const updateUserName = async (params: userUpdateNameType) => {
+    try {
+      const result: AxiosResponse = await authInstance.put(
+        '/user/update/name',
+        params,
+      );
+      console.log(result);
+      fetchUser();
+      fetchUserList();
+      toast.success('更新完了');
+    } catch (error) {
+      toast.error('更新失敗');
+    }
+  };
+
+  const updateUserPwd = async (params: userUpdatePwdType) => {
+    try {
+      const result: AxiosResponse = await authInstance.put(
+        '/user/update/pwd',
+        params,
+      );
+      console.log(result);
+      toast.success('更新完了');
+    } catch (error) {
+      toast.error('更新失敗');
+    }
+  };
+  return { fetchUser, fetchUserList, updateUserName, updateUserPwd };
 };
 
 export default useUserApi;

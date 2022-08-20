@@ -3,6 +3,8 @@ import { Modal, Box, TextField, Button } from '@mui/material';
 import { style } from '../modalStyle';
 import { modalType } from '../../../../types/Modal/modalType';
 import { InputHandlerType } from '../../../atoms/Input/types/InputHandlerType';
+import useUserApi from '../../../../useApi/useUserApi';
+import { userUpdatePwdType } from '../../../../types/User/userType';
 
 type Props = {
   modal: modalType;
@@ -15,6 +17,7 @@ const UserPwdUpdModal: VFC<Props> = (props) => {
   const { modal, currentPwd, newPwd, confirmPwd } = props;
   const [isDisable, setIsDisable] = useState(true);
   const [validationFailedMsg, setValidationFailedMsg] = useState('');
+  const { updateUserPwd } = useUserApi();
 
   const clearClose = () => {
     console.log('clear');
@@ -23,6 +26,15 @@ const UserPwdUpdModal: VFC<Props> = (props) => {
     confirmPwd.clear();
     setValidationFailedMsg('');
     modal.closeHandler();
+  };
+
+  const onClickSubmit = () => {
+    const params: userUpdatePwdType = {
+      current_pwd: currentPwd.value,
+      new_pwd: newPwd.value,
+    };
+    updateUserPwd(params);
+    clearClose();
   };
 
   const validateInput = () => {
@@ -103,7 +115,7 @@ const UserPwdUpdModal: VFC<Props> = (props) => {
             <Button
               disabled={isDisable}
               variant="contained"
-              onClick={() => console.log('password')}
+              onClick={onClickSubmit}
             >
               変更
             </Button>
