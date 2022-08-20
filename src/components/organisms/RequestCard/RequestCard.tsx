@@ -11,12 +11,22 @@ type Props = {
   reward: number;
   gas: number;
   status: boolean;
+  isDisable: boolean;
   publicRequest: boolean;
   onClick: () => void;
 };
 
 const RequestCard: VFC<Props> = (props) => {
-  const { owner, title, reward, gas, publicRequest, status, onClick } = props;
+  const {
+    owner,
+    title,
+    reward,
+    gas,
+    publicRequest,
+    status,
+    isDisable,
+    onClick,
+  } = props;
   return (
     <>
       <div className="h-5" />
@@ -32,18 +42,13 @@ const RequestCard: VFC<Props> = (props) => {
 
       <div className="h-2" />
       <div className="flex font-mono">
-        <div className="text-lg leading-6 w-20">Owner:</div>
         <NameLabel name={owner} />
       </div>
 
       <div className="h-3" />
 
       <div className="flex">
-        <HanamaruButton
-          label="done"
-          onClick={onClick}
-          isDisabled={!!(status === false)}
-        />
+        <HanamaruButton label="done" onClick={onClick} isDisabled={isDisable} />
         <div className="ml-auto">
           <RewardDisplay reward={reward} gas={gas} />
         </div>

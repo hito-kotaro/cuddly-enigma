@@ -16,7 +16,9 @@ const ApproveList: VFC<Props> = (props) => {
   return (
     <div>
       {approves.length <= 0 ? (
-        <EmptyStateIcon message={emptyMessage} />
+        <div className="mt-10">
+          <EmptyStateIcon message={emptyMessage} />
+        </div>
       ) : (
         <List sx={{ width: '100%', bgcolor: 'background.paper' }}>
           {approves.map((a: approveType) => (

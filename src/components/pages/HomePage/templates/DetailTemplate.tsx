@@ -1,4 +1,4 @@
-import React, { VFC } from 'react';
+import React, { useState, VFC } from 'react';
 import Button from '@mui/material/Button/Button';
 import { IoChevronBack } from 'react-icons/io5';
 import { AiOutlineClose } from 'react-icons/ai';
@@ -17,6 +17,11 @@ const DetailTemplate: VFC<Props> = (props) => {
   const { completeRequest } = useRequestApi();
   const { gas } = useGasState();
   const tax = (detail.reward * gas).toFixed(2);
+
+  // 公開中の依頼でない場合 OR 自分が発行した依頼の場合 -> 完了ボタンを無効
+  const [isDisable, setIsApprovable] = useState(
+    !detail.status || detail.owner_id === user.id,
+  );
 
   const onClick = () => {
     completeRequest(detail.id);
@@ -55,6 +60,7 @@ const DetailTemplate: VFC<Props> = (props) => {
           reward={detail.reward}
           status={detail.status}
           gas={Number(tax)}
+          isDisable={isDisable}
           onClick={onClick}
         />
 
