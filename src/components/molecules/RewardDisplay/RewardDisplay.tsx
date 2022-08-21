@@ -3,17 +3,17 @@ import HmtLabel from '../../atoms/Label/HmtLabel/HmtLabel';
 
 type Props = {
   reward: number;
-  gas: number;
+  tax: number;
 };
 const RewardDisplay: VFC<Props> = (props) => {
-  const { reward, gas } = props;
+  const { reward, tax } = props;
   return (
     <div>
       <HmtLabel title="Reward" value={reward} />
-      <HmtLabel title="Gas" value={gas} />
+      <HmtLabel title="Tax" value={tax} />
       <hr />
       <div className="h-1" />
-      <HmtLabel title="Total" value={reward - gas} />
+      <HmtLabel title="Total" value={Number((reward - tax).toFixed(2))} />
     </div>
   );
 };

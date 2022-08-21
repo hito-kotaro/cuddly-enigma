@@ -7,14 +7,14 @@ type Props = {
   applicant: string;
   title: string;
   reward: number;
-  gas: number;
+  tax: number;
   status: string;
   isDisable: boolean;
   onClick: () => void;
 };
 
 const ApproveCard: VFC<Props> = (props) => {
-  const { applicant, isDisable, title, reward, gas, status, onClick } = props;
+  const { applicant, isDisable, title, reward, tax, status, onClick } = props;
   console.log(isDisable);
   return (
     <>
@@ -47,7 +47,7 @@ const ApproveCard: VFC<Props> = (props) => {
           isDisabled={isDisable}
         />
         <div className="ml-auto">
-          <RewardDisplay reward={reward} gas={gas} />
+          <RewardDisplay reward={reward} tax={tax} />
         </div>
       </div>
     </>

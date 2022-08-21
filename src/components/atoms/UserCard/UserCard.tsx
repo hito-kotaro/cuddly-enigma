@@ -2,7 +2,6 @@ import React, { VFC } from 'react';
 import { BsFlower1 } from 'react-icons/bs';
 import useSpingState from '../../../stores/SpingState/useSpinState';
 import { userType } from '../../../types/User/userType';
-import useUserApi from '../../../useApi/useUserApi';
 import NameLabel from '../../molecules/NameLabel/NameLabel';
 
 type Props = {

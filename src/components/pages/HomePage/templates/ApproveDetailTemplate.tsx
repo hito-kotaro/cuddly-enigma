@@ -46,7 +46,7 @@ const ApproveDetailTemplate: VFC<Props> = (props) => {
           title={detail.title}
           reward={detail.reward}
           status={detail.status}
-          gas={Number(tax)}
+          tax={Number(tax)}
           // 申請者が自分OR承認済みの場合ボタンを無効化
           isDisable={
             detail.status !== 'open' || detail.applicant_id === user.id
