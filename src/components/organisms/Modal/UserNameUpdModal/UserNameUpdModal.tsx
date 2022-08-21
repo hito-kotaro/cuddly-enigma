@@ -2,7 +2,7 @@ import { Modal, Box, TextField, Button } from '@mui/material';
 import React, { useEffect, useState, VFC } from 'react';
 import useUserState from '../../../../stores/UserState/useUserState';
 import { modalType } from '../../../../types/Modal/modalType';
-import { userType, userUpdateNameType } from '../../../../types/User/userType';
+import { userUpdateNameType } from '../../../../types/User/userType';
 import useUserApi from '../../../../useApi/useUserApi';
 import { InputHandlerType } from '../../../atoms/Input/types/InputHandlerType';
 import { style } from '../modalStyle';
@@ -68,11 +68,7 @@ const UserNameUpdModal: VFC<Props> = (props) => {
         <div className="h-5" />
         <div className="flex justify-around">
           <div className="text-center">
-            <Button
-              variant="contained"
-              onClick={modal.closeHandler}
-              color="warning"
-            >
+            <Button variant="contained" onClick={clearClose} color="warning">
               キャンセル
             </Button>
           </div>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Avatar, Button } from '@mui/material';
 import stringToColor from '../../../../libs/stringToColor';
 import useInput from '../../../atoms/Input/hooks/useInput';
@@ -16,7 +16,7 @@ const UserUpdateTemplate = () => {
   const pwdUpdModal: modalType = useModal();
 
   // ユーザー名更新モーダルのインプットハンドラ
-  const nameInputHandler = useInput(user.name);
+  const nameInputHandler = useInput();
 
   // パスワード更新モーダルのインプットハンドラ
   const currentPwdHandler = useInput();
