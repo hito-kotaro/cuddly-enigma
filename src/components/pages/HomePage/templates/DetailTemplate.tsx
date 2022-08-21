@@ -10,11 +10,13 @@ import useRequestApi from '../../../../useApi/useRequestApi';
 import useGasState from '../../../../stores/GasState/useGasState';
 import useModal from '../../../organisms/Modal/useModal';
 import ConfirmModal from '../../../organisms/Modal/ConfirmModal/ConfirmModal';
+import useBankState from '../../../../stores/BankState/useBankState';
 
 type Props = { detail: requestType };
 const DetailTemplate: VFC<Props> = (props) => {
   const { detail } = props;
   const { user } = useUserState();
+  const { isBank } = useBankState();
   const { open } = useTemplateState();
   const { completeRequest, closeRequest } = useRequestApi();
   const { gas } = useGasState();
@@ -55,9 +57,10 @@ const DetailTemplate: VFC<Props> = (props) => {
             BACK
           </Button>
         </div>
-        {detail.owner_id === user.id &&
-        detail.is_bank === false &&
-        detail.status === true ? (
+        {(detail.owner_id === user.id &&
+          detail.is_bank === false &&
+          detail.status === true) ||
+        isBank === true ? (
           <div className="ml-auto">
             <Button
               onClick={closeRequestModal.openHandler}

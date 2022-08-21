@@ -30,7 +30,7 @@ const ApproveList: VFC<Props> = (props) => {
   }, [approves]);
   return (
     <div>
-      {approves.length <= 0 ? (
+      {filter.length <= 0 ? (
         <div className="mt-10">
           <EmptyStateIcon message={emptyMessage} />
         </div>

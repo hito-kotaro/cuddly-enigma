@@ -22,11 +22,14 @@ const useLogin = () => {
       const result: AxiosResponse = await axiosInstance.post('/auth/', params);
       if (params.is_bank) {
         setIsBank(true);
+        localStorage.setItem('bank', 'true');
       } else {
+        localStorage.setItem('bank', 'false');
         setIsBank(false);
       }
       localStorage.setItem('token', result.data.access_token);
       localStorage.setItem('id', result.data.id);
+
       setIsLoading(false);
       setIsSpin(false);
       setIsAuth(true);
@@ -40,6 +43,7 @@ const useLogin = () => {
 
   const logout = () => {
     localStorage.removeItem('token');
+    localStorage.removeItem('bank');
     // localStorage.removeItem('id');
     navigate('/');
     toast.success('logout');

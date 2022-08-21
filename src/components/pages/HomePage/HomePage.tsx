@@ -17,9 +17,11 @@ import useApproveListState from '../../../stores/Approves/useApproveListState';
 import ApproveDetailTemplate from './templates/ApproveDetailTemplate';
 import useBankApi from '../../../useApi/useBankApi';
 import UserUpdateTemplate from './templates/UserUpdateTemplate';
+import useBankState from '../../../stores/BankState/useBankState';
 
 const HomePage = () => {
   const { isSafari } = useUserAgentState();
+  const { fetchIsBank } = useBankState();
   const { templates } = useTemplateState();
   const { requestList } = useRequestListState();
   const { approveList } = useApproveListState();
@@ -37,10 +39,10 @@ const HomePage = () => {
   const { fetchUser, fetchUserList } = useUserApi();
   const { fetchApprove } = useApproveApi();
   const { display, hidden } = positions;
-
   useEffect(() => {
     fetchRequest();
     fetchUser();
+    fetchIsBank();
     fetchUserList();
     fetchApprove();
     fetchGasValue();
