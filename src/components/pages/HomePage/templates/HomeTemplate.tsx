@@ -3,6 +3,7 @@ import UserCard from '../../../atoms/UserCard/UserCard';
 import RequestList from '../../../molecules/RequestList/RequestList';
 import type { requestType } from '../../../../types/Request/requestType';
 import useUserState from '../../../../stores/UserState/useUserState';
+import useUserApi from '../../../../useApi/useUserApi';
 
 type Props = {
   requests: requestType[];
@@ -11,6 +12,7 @@ type Props = {
 
 const HomeTemplate: VFC<Props> = (props) => {
   const { requests, onClick } = props;
+  const { fetchUser } = useUserApi();
   const { user } = useUserState();
   const [filtered, setFiltered] = useState<requestType[]>([]);
 
@@ -21,6 +23,10 @@ const HomeTemplate: VFC<Props> = (props) => {
     });
     setFiltered(tmp);
   }, [requests, user.id]);
+
+  useEffect(() => {
+    fetchUser();
+  }, []);
 
   return (
     <div>

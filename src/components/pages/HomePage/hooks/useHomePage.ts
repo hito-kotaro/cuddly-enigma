@@ -58,6 +58,7 @@ const useHomePage = () => {
       return a.id === id;
     });
     setApproveDetailData(req[0]);
+    console.log(req);
     open('approveDetail');
   };
 

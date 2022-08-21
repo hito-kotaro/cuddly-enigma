@@ -28,7 +28,7 @@ const DetailTemplate: VFC<Props> = (props) => {
 
   // 公開中の依頼でない場合 OR 自分が発行した依頼の場合 -> 完了ボタンを無効
   const [isDisable, setIsApprovable] = useState(
-    !detail.status || detail.owner_id === user.id,
+    detail.status === false || detail.owner_id === user.id,
   );
 
   const onClick = () => {
@@ -87,7 +87,7 @@ const DetailTemplate: VFC<Props> = (props) => {
           reward={detail.reward}
           status={detail.status}
           gas={Number(tax)}
-          isDisable={isDisable}
+          isDisable={!detail.status}
           onClick={onClick}
         />
 

@@ -1,31 +1,25 @@
+import React, { VFC } from 'react';
 import { Button } from '@mui/material';
-import React, { useState, VFC } from 'react';
 import { IoChevronBack } from 'react-icons/io5';
 import useGasState from '../../../../stores/GasState/useGasState';
 import useTemplateState from '../../../../stores/TemplatesState/useTemplateState';
-import useUserState from '../../../../stores/UserState/useUserState';
 import {
   approveType,
   updateApproveType,
 } from '../../../../types/Approve/approveType';
 import useApproveApi from '../../../../useApi/useApproveApi';
 import ApproveCard from '../../../organisms/ApproveCard/ApproveCard';
+import useUserState from '../../../../stores/UserState/useUserState';
 
 type Props = { detail: approveType };
 const ApproveDetailTemplate: VFC<Props> = (props) => {
   const { detail } = props;
   const { user } = useUserState();
-  const [isApproveble, setIsApprovable] = useState(
-    detail.status !== 'open' || detail.applicant_id === user.id,
-  );
   const { updateApprove } = useApproveApi();
   const { open } = useTemplateState();
   const { gas } = useGasState();
   const tax = (detail.reward * gas).toFixed(2);
-
   const onClick = () => {
-    // console.log(detail.id);
-    // completeRequest(detail.id);
     const params: updateApproveType = {
       id: detail.id,
       new_status: 'approved',
@@ -53,7 +47,10 @@ const ApproveDetailTemplate: VFC<Props> = (props) => {
           reward={detail.reward}
           status={detail.status}
           gas={Number(tax)}
-          isApproveble={isApproveble}
+          // 申請者が自分OR承認済みの場合ボタンを無効化
+          isDisable={
+            detail.status !== 'open' || detail.applicant_id === user.id
+          }
           onClick={onClick}
         />
 

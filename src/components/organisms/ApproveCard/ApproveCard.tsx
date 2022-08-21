@@ -9,14 +9,13 @@ type Props = {
   reward: number;
   gas: number;
   status: string;
-  isApproveble: boolean;
+  isDisable: boolean;
   onClick: () => void;
 };
 
 const ApproveCard: VFC<Props> = (props) => {
-  const { applicant, isApproveble, title, reward, gas, status, onClick } =
-    props;
-
+  const { applicant, isDisable, title, reward, gas, status, onClick } = props;
+  console.log(isDisable);
   return (
     <>
       <div className="flex font-mono">
@@ -45,7 +44,7 @@ const ApproveCard: VFC<Props> = (props) => {
         <HanamaruButton
           label="approve"
           onClick={onClick}
-          isDisabled={isApproveble}
+          isDisabled={isDisable}
         />
         <div className="ml-auto">
           <RewardDisplay reward={reward} gas={gas} />

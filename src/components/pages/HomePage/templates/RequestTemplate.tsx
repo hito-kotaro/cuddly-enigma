@@ -17,10 +17,12 @@ import type { userOptionType } from '../../../../types/User/userType';
 import useUserListState from '../../../../stores/UserState/useUserListState';
 import useUserState from '../../../../stores/UserState/useUserState';
 import useBankState from '../../../../stores/BankState/useBankState';
+import useUserApi from '../../../../useApi/useUserApi';
 
 const RequestTemplate = () => {
   const [isChecked, setIsChecked] = useState(false);
   const { createRequest } = useRequestApi();
+  const { fetchUser } = useUserApi();
   const rewardInputHandler = useInputNumber();
   const titleInputHandler = useInput();
   const descInputHandler = useInput();
@@ -60,6 +62,7 @@ const RequestTemplate = () => {
     rewardInputHandler.clear();
     setIsChecked(false);
     createRequest(newRequest);
+    fetchUser();
   };
 
   const validateInput = () => {
