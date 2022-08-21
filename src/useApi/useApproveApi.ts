@@ -24,7 +24,7 @@ const useApproveApi = () => {
       await authInstance.put('/approve/update/', params);
       fetchApprove();
       fetchUser();
-      toast.error('承認完了');
+      toast.success('承認完了');
     } catch (error) {
       toast.error('更新失敗');
     }
