@@ -30,6 +30,11 @@ const MenuButton = () => {
     open('userUpdate');
   };
 
+  const handleHistory = () => {
+    handleClose();
+    open('history');
+  };
+
   return (
     <div>
       <Button
@@ -51,6 +56,7 @@ const MenuButton = () => {
         }}
       >
         <MenuItem onClick={handleUserUpdate}>ユーザー更新</MenuItem>
+        <MenuItem onClick={handleHistory}>履歴</MenuItem>
         <MenuItem onClick={handleLogout}>Logout</MenuItem>
       </Menu>
     </div>

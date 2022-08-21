@@ -18,6 +18,7 @@ import ApproveDetailTemplate from './templates/ApproveDetailTemplate';
 import useBankApi from '../../../useApi/useBankApi';
 import UserUpdateTemplate from './templates/UserUpdateTemplate';
 import useBankState from '../../../stores/BankState/useBankState';
+import HistoryTemplate from './templates/HistoryTemplate';
 
 const HomePage = () => {
   const { isSafari } = useUserAgentState();
@@ -25,8 +26,16 @@ const HomePage = () => {
   const { templates } = useTemplateState();
   const { requestList } = useRequestListState();
   const { approveList } = useApproveListState();
-  const { home, detail, request, list, approve, approveDetail, userUpdate } =
-    templates;
+  const {
+    home,
+    detail,
+    request,
+    list,
+    approve,
+    approveDetail,
+    userUpdate,
+    history,
+  } = templates;
   const {
     requestDetailData,
     approveDetailData,
@@ -80,6 +89,10 @@ const HomePage = () => {
 
         <div className={`${request ? display : hidden}`}>
           <RequestTemplate />
+        </div>
+
+        <div className={`${history ? display : hidden}`}>
+          <HistoryTemplate />
         </div>
 
         <div className={`${approve ? display : hidden}`}>

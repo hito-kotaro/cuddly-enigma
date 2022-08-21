@@ -6,4 +6,5 @@ export type templateStateType = {
   approve: boolean;
   approveDetail: boolean;
   userUpdate: boolean;
+  history: boolean;
 };
