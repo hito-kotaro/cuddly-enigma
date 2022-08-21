@@ -8,6 +8,7 @@ export type approveType = {
   owner: string;
   status: string;
   reward: number;
+  is_bank: boolean;
   created_at: string;
   updated_at: string;
 };

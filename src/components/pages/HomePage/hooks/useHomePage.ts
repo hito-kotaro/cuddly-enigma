@@ -22,6 +22,7 @@ const useHomePage = () => {
     description: '',
     reward: 0,
     status: '',
+    is_bank: false,
     created_at: '',
     updated_at: '',
   });

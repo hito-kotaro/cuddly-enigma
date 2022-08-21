@@ -1,5 +1,5 @@
-import { List, Divider } from '@mui/material';
 import React, { VFC } from 'react';
+import { List, Divider } from '@mui/material';
 import { approveType } from '../../../types/Approve/approveType';
 import EmptyStateIcon from '../../atoms/EmptyStateIcon/EmptyStateIcon';
 import PrimaryListItem from '../../atoms/PrimaryListItem/PrimaryListItem';
@@ -29,6 +29,8 @@ const ApproveList: VFC<Props> = (props) => {
                 title={a.title}
                 reward={a.reward}
                 description={a.description}
+                updatedAt={a.updated_at}
+                status={a.status === 'open'}
                 onClick={onClick}
               />
               <Divider variant="inset" component="li" />

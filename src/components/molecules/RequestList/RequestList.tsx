@@ -29,6 +29,8 @@ const RequestList: VFC<Props> = (props) => {
                 title={r.title}
                 reward={r.reward}
                 description={r.description}
+                updatedAt={r.created_at}
+                status={r.status}
                 onClick={onClick}
               />
               <Divider variant="inset" component="li" />
