@@ -37,11 +37,10 @@ const useRequestApi = () => {
 
   const closeRequest = async (requestId: number) => {
     try {
-      await authInstance.put(`/request/update/${requestId}`);
+      await authInstance.put(`/request/close/${requestId}`);
       // console.log(result.data);
       toast.success('依頼終了');
       fetchRequest();
-      open('home');
     } catch (error) {
       toast.error('依頼更新失敗');
       // console.log(error);
@@ -53,7 +52,6 @@ const useRequestApi = () => {
       await authInstance.put(`/request/complete/${requestId}`);
       toast.success('依頼終了');
       fetchRequest();
-      open('home');
     } catch (error) {
       toast.error('依頼更新失敗');
     }

@@ -10,13 +10,15 @@ import useRequestApi from '../../../../useApi/useRequestApi';
 import useGasState from '../../../../stores/GasState/useGasState';
 import useModal from '../../../organisms/Modal/useModal';
 import ConfirmModal from '../../../organisms/Modal/ConfirmModal/ConfirmModal';
+import useUserApi from '../../../../useApi/useUserApi';
 
 type Props = { detail: requestType };
 const DetailTemplate: VFC<Props> = (props) => {
   const { detail } = props;
   const { user } = useUserState();
   const { open } = useTemplateState();
-  const { completeRequest } = useRequestApi();
+  const { completeRequest, closeRequest } = useRequestApi();
+  const { fetchUser } = useUserApi();
   const { gas } = useGasState();
   const closeRequestModal = useModal();
   const tax = (detail.reward * gas).toFixed(2);
@@ -31,12 +33,13 @@ const DetailTemplate: VFC<Props> = (props) => {
 
   const onClick = () => {
     completeRequest(detail.id);
+    open('list');
   };
 
   const closeSubmitHandler = () => {
-    // api読んで
-    console.log('call close api');
-
+    // api call
+    closeRequest(detail.id);
+    fetchUser();
     // モーダル閉じて
     closeRequestModal.closeHandler();
 
@@ -60,14 +63,11 @@ const DetailTemplate: VFC<Props> = (props) => {
           </Button>
         </div>
         {detail.owner_id === user.id ? (
-          <div className="ml-auto">
+          <div className={`ml-auto ${detail.status ? '' : 'hidden'}`}>
             <Button
               onClick={closeRequestModal.openHandler}
               startIcon={<AiOutlineClose />}
             >
-              {/* 完了していない依頼を終了した場合は、GASを引かれる */}
-              {/* 完了依頼を出したらしたら自動的に削除される */}
-              {/* 承認を却下した場合 */}
               依頼を終了する
             </Button>
           </div>
