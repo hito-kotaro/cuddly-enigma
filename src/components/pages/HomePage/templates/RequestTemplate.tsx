@@ -66,6 +66,7 @@ const RequestTemplate = () => {
     if (
       titleInputHandler.value === '' ||
       rewardInputHandler.valueNum === '' ||
+      descInputHandler.value.length > 140 ||
       Number(rewardInputHandler.valueNum) > user.hmt ||
       Number(rewardInputHandler.valueNum) < 0.01 ||
       (val.id === -1 && !isChecked)
@@ -78,7 +79,13 @@ const RequestTemplate = () => {
 
   useEffect(() => {
     validateInput();
-  }, [rewardInputHandler.valueNum, titleInputHandler.value, val, isChecked]);
+  }, [
+    rewardInputHandler.valueNum,
+    titleInputHandler.value,
+    descInputHandler.value,
+    val,
+    isChecked,
+  ]);
 
   const onCheck = () => {
     setIsChecked(!isChecked);
@@ -141,12 +148,17 @@ const RequestTemplate = () => {
         control={<Checkbox checked={isChecked} onChange={onCheck} />}
         label="この依頼を全員に公開する"
       />
+      <div className="text-red-500 h-5">
+        {descInputHandler.value.length > 140
+          ? 'コメントの文字数制限を超過しました'
+          : ''}
+      </div>
       <TextField
         label="コメント"
         fullWidth
         multiline
-        minRows={10}
-        maxRows={10}
+        minRows={5}
+        maxRows={5}
         value={descInputHandler.value}
         onChange={descInputHandler.onChange}
       />

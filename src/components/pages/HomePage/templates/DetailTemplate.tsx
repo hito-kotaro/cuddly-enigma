@@ -38,6 +38,8 @@ const DetailTemplate: VFC<Props> = (props) => {
     open('list');
   };
 
+  // console.log(detail);
+
   return (
     <>
       <ConfirmModal
@@ -53,8 +55,10 @@ const DetailTemplate: VFC<Props> = (props) => {
             BACK
           </Button>
         </div>
-        {detail.owner_id === user.id && detail.is_bank === false ? (
-          <div className={`ml-auto ${detail.status ? '' : 'hidden'}`}>
+        {detail.owner_id === user.id &&
+        detail.is_bank === false &&
+        detail.status === true ? (
+          <div className="ml-auto">
             <Button
               onClick={closeRequestModal.openHandler}
               startIcon={<AiOutlineClose />}

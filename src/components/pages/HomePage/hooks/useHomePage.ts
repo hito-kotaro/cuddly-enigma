@@ -48,6 +48,7 @@ const useHomePage = () => {
     const req: requestType[] = requestList.filter((r: requestType) => {
       return r.id === id;
     });
+    console.log(req[0]);
     setRequestDetailData(req[0]);
     open('detail');
   };
