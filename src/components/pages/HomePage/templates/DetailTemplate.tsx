@@ -8,6 +8,8 @@ import useTemplateState from '../../../../stores/TemplatesState/useTemplateState
 import useUserState from '../../../../stores/UserState/useUserState';
 import useRequestApi from '../../../../useApi/useRequestApi';
 import useGasState from '../../../../stores/GasState/useGasState';
+import useModal from '../../../organisms/Modal/useModal';
+import ConfirmModal from '../../../organisms/Modal/ConfirmModal/ConfirmModal';
 
 type Props = { detail: requestType };
 const DetailTemplate: VFC<Props> = (props) => {
@@ -16,7 +18,11 @@ const DetailTemplate: VFC<Props> = (props) => {
   const { open } = useTemplateState();
   const { completeRequest } = useRequestApi();
   const { gas } = useGasState();
+  const closeRequestModal = useModal();
   const tax = (detail.reward * gas).toFixed(2);
+  const confirmMsg = `報酬額から手数料を引いた${
+    detail.reward - Number(tax)
+  }HMTが返却されます`;
 
   // 公開中の依頼でない場合 OR 自分が発行した依頼の場合 -> 完了ボタンを無効
   const [isDisable, setIsApprovable] = useState(
@@ -27,8 +33,26 @@ const DetailTemplate: VFC<Props> = (props) => {
     completeRequest(detail.id);
   };
 
+  const closeSubmitHandler = () => {
+    // api読んで
+    console.log('call close api');
+
+    // モーダル閉じて
+    closeRequestModal.closeHandler();
+
+    // リストに戻る
+    open('list');
+  };
+
   return (
     <>
+      <ConfirmModal
+        confirmMsg="依頼を終了しますか?"
+        alertMsg={confirmMsg}
+        submitMsg="依頼を終了"
+        modal={closeRequestModal}
+        submitHandler={closeSubmitHandler}
+      />
       <div className="bg-base border-b-1  border-gray-300 flex px-3">
         <div>
           <Button onClick={() => open('list')} startIcon={<IoChevronBack />}>
@@ -37,7 +61,10 @@ const DetailTemplate: VFC<Props> = (props) => {
         </div>
         {detail.owner_id === user.id ? (
           <div className="ml-auto">
-            <Button onClick={() => open('list')} startIcon={<AiOutlineClose />}>
+            <Button
+              onClick={closeRequestModal.openHandler}
+              startIcon={<AiOutlineClose />}
+            >
               {/* 完了していない依頼を終了した場合は、GASを引かれる */}
               {/* 完了依頼を出したらしたら自動的に削除される */}
               {/* 承認を却下した場合 */}
