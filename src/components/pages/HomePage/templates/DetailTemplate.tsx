@@ -53,7 +53,7 @@ const DetailTemplate: VFC<Props> = (props) => {
             BACK
           </Button>
         </div>
-        {detail.owner_id === user.id ? (
+        {detail.owner_id === user.id && detail.is_bank === false ? (
           <div className={`ml-auto ${detail.status ? '' : 'hidden'}`}>
             <Button
               onClick={closeRequestModal.openHandler}
