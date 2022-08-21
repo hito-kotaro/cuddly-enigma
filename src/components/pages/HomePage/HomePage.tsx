@@ -44,7 +44,6 @@ const HomePage = () => {
     fetchUserList();
     fetchApprove();
     fetchGasValue();
-    console.log(process.env.NODE_ENV);
   }, []);
 
   return (

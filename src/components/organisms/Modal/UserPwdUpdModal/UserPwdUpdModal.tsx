@@ -20,7 +20,6 @@ const UserPwdUpdModal: VFC<Props> = (props) => {
   const { updateUserPwd } = useUserApi();
 
   const clearClose = () => {
-    console.log('clear');
     currentPwd.clear();
     newPwd.clear();
     confirmPwd.clear();
@@ -59,7 +58,6 @@ const UserPwdUpdModal: VFC<Props> = (props) => {
 
   useEffect(() => {
     validateInput();
-    console.log(validationFailedMsg);
   }, [currentPwd.value, newPwd.value, confirmPwd.value]);
 
   return (

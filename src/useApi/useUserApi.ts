@@ -51,11 +51,7 @@ const useUserApi = () => {
 
   const updateUserName = async (params: userUpdateNameType) => {
     try {
-      const result: AxiosResponse = await authInstance.put(
-        '/user/update/name',
-        params,
-      );
-      console.log(result);
+      await authInstance.put('/user/update/name', params);
       fetchUser();
       fetchUserList();
       toast.success('更新完了');
@@ -66,11 +62,7 @@ const useUserApi = () => {
 
   const updateUserPwd = async (params: userUpdatePwdType) => {
     try {
-      const result: AxiosResponse = await authInstance.put(
-        '/user/update/pwd',
-        params,
-      );
-      console.log(result);
+      await authInstance.put('/user/update/pwd', params);
       toast.success('更新完了');
     } catch (error) {
       toast.error('更新失敗');

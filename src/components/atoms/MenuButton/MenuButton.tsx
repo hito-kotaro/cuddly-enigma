@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import Button from '@mui/material/Button';
 import { HiMenu } from 'react-icons/hi';
 import { Menu, MenuItem } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
 import useLogin from '../../../hooks/useLogin';
 import useTemplateState from '../../../stores/TemplatesState/useTemplateState';
 
@@ -29,7 +28,6 @@ const MenuButton = () => {
   const handleUserUpdate = () => {
     handleClose();
     open('userUpdate');
-    console.log('hello');
   };
 
   return (

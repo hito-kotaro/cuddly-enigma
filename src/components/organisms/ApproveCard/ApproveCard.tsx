@@ -15,7 +15,6 @@ type Props = {
 
 const ApproveCard: VFC<Props> = (props) => {
   const { applicant, isDisable, title, reward, tax, status, onClick } = props;
-  console.log(isDisable);
   return (
     <>
       <div className="flex font-mono">

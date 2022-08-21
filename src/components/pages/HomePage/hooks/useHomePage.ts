@@ -44,7 +44,6 @@ const useHomePage = () => {
   };
 
   const onClickRequestListItem = (id: number) => {
-    // filter from RequestList
     const req: requestType[] = requestList.filter((r: requestType) => {
       return r.id === id;
     });
@@ -58,7 +57,6 @@ const useHomePage = () => {
       return a.id === id;
     });
     setApproveDetailData(req[0]);
-    console.log(req);
     open('approveDetail');
   };
 
