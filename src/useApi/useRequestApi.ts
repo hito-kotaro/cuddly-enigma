@@ -47,7 +47,7 @@ const useRequestApi = () => {
   const completeRequest = async (requestId: number) => {
     try {
       await authInstance.put(`/request/complete/${requestId}`);
-      toast.success('依頼終了');
+      toast.success('依頼完了を申請しました。 承認されるまでお待ちください。');
       fetchRequest();
       fetchUser();
     } catch (error) {

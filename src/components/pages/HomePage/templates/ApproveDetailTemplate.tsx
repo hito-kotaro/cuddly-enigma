@@ -10,10 +10,12 @@ import {
 import useApproveApi from '../../../../useApi/useApproveApi';
 import ApproveCard from '../../../organisms/ApproveCard/ApproveCard';
 import useUserState from '../../../../stores/UserState/useUserState';
+import useBankState from '../../../../stores/BankState/useBankState';
 
 type Props = { detail: approveType };
 const ApproveDetailTemplate: VFC<Props> = (props) => {
   const { detail } = props;
+  const { isBank } = useBankState();
   const { user } = useUserState();
   const { updateApprove } = useApproveApi();
   const { open } = useTemplateState();
@@ -49,7 +51,8 @@ const ApproveDetailTemplate: VFC<Props> = (props) => {
           tax={Number(tax)}
           // 申請者が自分OR承認済みの場合ボタンを無効化
           isDisable={
-            detail.status !== 'open' || detail.applicant_id === user.id
+            detail.status !== 'open' ||
+            (detail.applicant_id === user.id && isBank === false)
           }
           onClick={onClick}
         />
