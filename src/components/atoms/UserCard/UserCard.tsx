@@ -1,6 +1,6 @@
 import React, { VFC } from 'react';
 import { BsFlower1 } from 'react-icons/bs';
-import useSpingState from '../../../stores/SpingState/useSpinState';
+import useSpinState from '../../../stores/SpinState/useSpinState';
 import { userType } from '../../../types/User/userType';
 import NameLabel from '../../molecules/NameLabel/NameLabel';
 
@@ -10,7 +10,7 @@ type Props = {
 
 const UserCard: VFC<Props> = (props) => {
   const { user } = props;
-  const { isSpin, setIsSpin } = useSpingState();
+  const { isSpin, setIsSpin } = useSpinState();
 
   return (
     <div className="w-11/12 h-40 rounded-lg p-2 ring-1 ring-black ring-opacity-10 ">

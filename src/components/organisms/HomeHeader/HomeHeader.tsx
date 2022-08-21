@@ -1,14 +1,18 @@
 import React from 'react';
 import useGasState from '../../../stores/GasState/useGasState';
+import useUserApi from '../../../useApi/useUserApi';
 import HeaderLogo from '../../atoms/HeaderLogo/HeaderLogo';
 import MenuButton from '../../atoms/MenuButton/MenuButton';
 
 const HomeHeader = () => {
   const { gas } = useGasState();
+  const { fetchUser } = useUserApi();
   return (
     <div className="sticky top-0 z-40 bg-base flex p-1">
       <div>
-        <HeaderLogo />
+        <button type="button" onClick={fetchUser}>
+          <HeaderLogo />
+        </button>
       </div>
       {/* <div className="ml-auto leading-10">現在のGas:</div> */}
 

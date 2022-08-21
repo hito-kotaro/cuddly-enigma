@@ -5,12 +5,12 @@ import { axiosInstance } from '../libs/axiosInstance';
 import useAuthState from '../stores/AuthState/useAuthState';
 import useBankState from '../stores/BankState/useBankState';
 import useLoadingState from '../stores/LoadingState/useLoadingState';
-import useSpingState from '../stores/SpingState/useSpinState';
+import useSpinState from '../stores/SpinState/useSpinState';
 import type { loginParams } from '../types/ApiParams/loginParams';
 
 const useLogin = () => {
   const { setIsLoading } = useLoadingState();
-  const { setIsSpin } = useSpingState();
+  const { setIsSpin } = useSpinState();
   const { setIsBank } = useBankState();
   const { setIsAuth } = useAuthState();
   const navigate = useNavigate();
@@ -28,7 +28,6 @@ const useLogin = () => {
         setIsBank(false);
       }
       localStorage.setItem('token', result.data.access_token);
-      localStorage.setItem('id', result.data.id);
 
       setIsLoading(false);
       setIsSpin(false);
@@ -44,7 +43,6 @@ const useLogin = () => {
   const logout = () => {
     localStorage.removeItem('token');
     localStorage.removeItem('bank');
-    // localStorage.removeItem('id');
     navigate('/');
     toast.success('logout');
   };

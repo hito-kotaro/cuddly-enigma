@@ -1,9 +1,9 @@
 import React from 'react';
 import { BsFlower1 } from 'react-icons/bs';
-import useSpingState from '../../../stores/SpingState/useSpinState';
+import useSpinState from '../../../stores/SpinState/useSpinState';
 
 export const MainLogo = () => {
-  const { isSpin, setIsSpin } = useSpingState();
+  const { isSpin, setIsSpin } = useSpinState();
   return (
     <>
       <div className="flex justify-center">

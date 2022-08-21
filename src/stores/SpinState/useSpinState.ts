@@ -1,9 +1,9 @@
 import { useRecoilState } from 'recoil';
 import { spinState } from './spinState';
 
-const useSpingState = () => {
+const useSpinState = () => {
   const [isSpin, setIsSpin] = useRecoilState(spinState);
   return { isSpin, setIsSpin };
 };
 
-export default useSpingState;
+export default useSpinState;
