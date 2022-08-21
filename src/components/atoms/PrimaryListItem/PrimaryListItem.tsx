@@ -42,9 +42,9 @@ const PrimaryListItem: VFC<Props> = (props) => {
         secondary={
           <div>
             <div className="flex">
-              <Badge color="blue">{`${String(reward)}hmt`}</Badge>
+              <Badge color="blue">{`${String(reward)} hmt`}</Badge>
             </div>
-            text
+            {description}
           </div>
         }
       />
