@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import toast from 'react-hot-toast';
 import useUserAgentState from '../../../stores/UserAgentState/useUserAgentState';
 import Footer from '../../organisms/Footer/Footer';
 import HomeHeader from '../../organisms/HomeHeader/HomeHeader';
@@ -19,9 +20,11 @@ import useBankApi from '../../../useApi/useBankApi';
 import UserUpdateTemplate from './templates/UserUpdateTemplate';
 import useBankState from '../../../stores/BankState/useBankState';
 import HistoryTemplate from './templates/HistoryTemplate';
+import useSpinState from '../../../stores/SpinState/useSpinState';
 
 const HomePage = () => {
   const { isSafari } = useUserAgentState();
+  const { setIsSpin } = useSpinState();
   const { fetchIsBank } = useBankState();
   const { templates } = useTemplateState();
   const { requestList } = useRequestListState();
@@ -48,18 +51,27 @@ const HomePage = () => {
   const { fetchUser, fetchUserList } = useUserApi();
   const { fetchApprove } = useApproveApi();
   const { display, hidden } = positions;
-  useEffect(() => {
+
+  const updatePage = async () => {
+    console.log('update');
+    setIsSpin(true);
     fetchRequest();
     fetchUser();
     fetchIsBank();
     fetchUserList();
     fetchApprove();
-    fetchGasValue();
+    await fetchGasValue();
+    setIsSpin(false);
+    toast.success('update!');
+  };
+
+  useEffect(() => {
+    updatePage();
   }, []);
 
   return (
     <div className={`${isSafari}`}>
-      <HomeHeader />
+      <HomeHeader updatePage={updatePage} />
       <div className="relative">
         <div className={`${home ? display : hidden} h-screen overflow-scroll`}>
           <HomeTemplate

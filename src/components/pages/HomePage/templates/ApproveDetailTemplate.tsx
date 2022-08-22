@@ -52,7 +52,8 @@ const ApproveDetailTemplate: VFC<Props> = (props) => {
           // 申請者が自分OR承認済みの場合ボタンを無効化
           isDisable={
             detail.status !== 'open' ||
-            (detail.applicant_id === user.id && isBank === false)
+            (detail.applicant_id === user.id && isBank === false) ||
+            (detail.is_bank === true && isBank === false)
           }
           onClick={onClick}
         />

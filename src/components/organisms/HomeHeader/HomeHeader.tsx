@@ -1,16 +1,19 @@
-import React from 'react';
+import React, { VFC } from 'react';
 import useGasState from '../../../stores/GasState/useGasState';
-import useUserApi from '../../../useApi/useUserApi';
 import HeaderLogo from '../../atoms/HeaderLogo/HeaderLogo';
 import MenuButton from '../../atoms/MenuButton/MenuButton';
 
-const HomeHeader = () => {
+type Props = {
+  updatePage: () => void;
+};
+
+const HomeHeader: VFC<Props> = (props) => {
+  const { updatePage } = props;
   const { gas } = useGasState();
-  const { fetchUser } = useUserApi();
   return (
     <div className="sticky top-0 z-40 bg-base flex p-1">
       <div>
-        <button type="button" onClick={fetchUser}>
+        <button type="button" onClick={updatePage}>
           <HeaderLogo />
         </button>
       </div>

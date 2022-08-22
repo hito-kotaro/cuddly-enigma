@@ -1,4 +1,4 @@
-import React, { VFC } from 'react';
+import React, { useState, VFC } from 'react';
 import Button from '@mui/material/Button/Button';
 import { IoChevronBack } from 'react-icons/io5';
 import { AiOutlineClose } from 'react-icons/ai';
@@ -15,6 +15,7 @@ import useBankState from '../../../../stores/BankState/useBankState';
 type Props = { detail: requestType };
 const DetailTemplate: VFC<Props> = (props) => {
   const { detail } = props;
+  const [isDisable, setIsDisable] = useState(false);
   const { user } = useUserState();
   const { isBank } = useBankState();
   const { open } = useTemplateState();
@@ -85,7 +86,10 @@ const DetailTemplate: VFC<Props> = (props) => {
           reward={detail.reward}
           status={detail.status}
           tax={Number(tax)}
-          isDisable={!detail.status}
+          isDisable={
+            detail.status === false ||
+            (detail.owner_id === user.id && isBank === false)
+          }
           onClick={onClick}
         />
 

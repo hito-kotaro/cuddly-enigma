@@ -25,18 +25,18 @@ const ApproveList: VFC<Props> = (props) => {
       }
       return a.owner_id === user.id && a.is_bank === false;
     });
-    console.log(tmpFilter);
+    console.log(approves);
     setFilter(tmpFilter);
   }, [approves]);
   return (
     <div>
-      {filter.length <= 0 ? (
+      {approves.length <= 0 ? (
         <div className="mt-10">
           <EmptyStateIcon message={emptyMessage} />
         </div>
       ) : (
         <List sx={{ width: '100%', bgcolor: 'background.paper' }}>
-          {filter.map((a: approveType) => (
+          {approves.map((a: approveType) => (
             <>
               <PrimaryListItem
                 id={a.id}
