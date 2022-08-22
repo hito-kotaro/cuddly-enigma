@@ -13,6 +13,7 @@ const useApproveApi = () => {
   const fetchApprove = async () => {
     try {
       const result: AxiosResponse = await authInstance.get('/approve/');
+      console.log(result.data.approves);
       setApproveList(result.data.approves);
     } catch (error) {
       toast.error('取得失敗');

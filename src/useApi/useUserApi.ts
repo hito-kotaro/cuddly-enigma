@@ -2,7 +2,6 @@ import { AxiosResponse } from 'axios';
 import { toast } from 'react-hot-toast';
 import { createAxiosTokenInstance } from '../libs/axiosInstance';
 import useBankState from '../stores/BankState/useBankState';
-import useSpinState from '../stores/SpinState/useSpinState';
 import useUserListState from '../stores/UserState/useUserListState';
 import useUserState from '../stores/UserState/useUserState';
 import {
@@ -15,26 +14,20 @@ import {
 const useUserApi = () => {
   const authInstance = createAxiosTokenInstance();
   const { isBank } = useBankState();
-  const { setIsSpin } = useSpinState();
   const { setUser } = useUserState();
   const { setUserList } = useUserListState();
 
   const fetchUser = async () => {
     try {
-      console.log('fetch user');
       if (isBank) {
         const result: AxiosResponse = await authInstance.get('/bank/');
-        setIsSpin(true);
         setUser(result.data);
       } else {
         const result: AxiosResponse = await authInstance.get('/user/');
-        setIsSpin(true);
         setUser(result.data);
       }
-      setIsSpin(false);
     } catch (error) {
       toast.error('取得失敗');
-      setIsSpin(false);
     }
   };
 
