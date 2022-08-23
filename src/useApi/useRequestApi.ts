@@ -5,12 +5,15 @@ import useRequestListState from '../stores/Requests/useRequestListState';
 import { createRequestType } from '../types/Request/requestType';
 import useTemplateState from '../stores/TemplatesState/useTemplateState';
 import useUserApi from './useUserApi';
+import { postRequestType, postCompleteType } from '../types/Line/LineType';
+import useLineApi from './useLineApi';
 
 const useRequestApi = () => {
   const authInstance = createAxiosTokenInstance();
   const { setRequestList } = useRequestListState();
   const { open } = useTemplateState();
   const { fetchUser } = useUserApi();
+  const { postRequest, postComplete } = useLineApi();
 
   const fetchRequest = async () => {
     try {
@@ -22,9 +25,11 @@ const useRequestApi = () => {
   };
 
   const createRequest = async (params: createRequestType) => {
+    const notifyParams: postRequestType = { request_title: params.title };
     try {
       await authInstance.post('/request/create/', params);
       toast.success('依頼作成');
+      postRequest(notifyParams);
       fetchRequest();
       fetchUser();
       open('home');
@@ -44,10 +49,19 @@ const useRequestApi = () => {
     }
   };
 
-  const completeRequest = async (requestId: number) => {
+  const completeRequest = async (
+    requestId: number,
+    title: string,
+    owner: string,
+  ) => {
+    const notifyParams: postCompleteType = {
+      request_title: title,
+      owner,
+    };
     try {
       await authInstance.put(`/request/complete/${requestId}`);
       toast.success('依頼完了を申請しました。 承認されるまでお待ちください。');
+      postComplete(notifyParams);
       fetchRequest();
       fetchUser();
     } catch (error) {

@@ -26,7 +26,7 @@ const ApproveDetailTemplate: VFC<Props> = (props) => {
       id: detail.id,
       new_status: 'approved',
     };
-    updateApprove(params);
+    updateApprove(params, detail.title);
     open('approve');
   };
 
