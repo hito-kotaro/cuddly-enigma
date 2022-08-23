@@ -103,11 +103,11 @@ const HomePage = () => {
           <RequestTemplate />
         </div>
 
-        <div className={`${history ? display : hidden}`}>
+        <div className={`${history ? display : hidden} h-screen overflow-scroll`}>
           <HistoryTemplate />
         </div>
 
-        <div className={`${approve ? display : hidden}`}>
+        <div className={`${approve ? display : hidden} h-screen overflow-scroll`}>
           <ApproveTemplate
             onClick={onClickApproveListItem}
             approves={approveList}
