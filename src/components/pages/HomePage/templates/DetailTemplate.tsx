@@ -28,7 +28,7 @@ const DetailTemplate: VFC<Props> = (props) => {
   }HMTが返却されます`;
 
   const onClick = () => {
-    completeRequest(detail.id);
+    completeRequest(detail.id, detail.title, detail.owner);
     open('list');
   };
 

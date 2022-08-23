@@ -3,12 +3,15 @@ import { toast } from 'react-hot-toast';
 import { createAxiosTokenInstance } from '../libs/axiosInstance';
 import useApproveListState from '../stores/Approves/useApproveListState';
 import { updateApproveType } from '../types/Approve/approveType';
+import { postRequestType } from '../types/Line/LineType';
 import useUserApi from './useUserApi';
+import useLineApi from './useLineApi';
 
 const useApproveApi = () => {
   const authInstance = createAxiosTokenInstance();
   const { setApproveList } = useApproveListState();
   const { fetchUser } = useUserApi();
+  const { postApprove } = useLineApi();
 
   const fetchApprove = async () => {
     try {
@@ -20,9 +23,11 @@ const useApproveApi = () => {
     }
   };
 
-  const updateApprove = async (params: updateApproveType) => {
+  const updateApprove = async (params: updateApproveType, title: string) => {
+    const notifyParams: postRequestType = { request_title: title };
     try {
       await authInstance.put('/approve/update/', params);
+      postApprove(notifyParams);
       fetchApprove();
       fetchUser();
       toast.success('承認完了');
