@@ -92,7 +92,7 @@ const DetailTemplate: VFC<Props> = (props) => {
           tax={Number(tax)}
           isDisable={
             detail.status === false ||
-            (detail.owner_id === user.id && isBank === false)
+            (detail.owner_id === user.id && isBank === detail.is_bank)
           }
           onClick={onClick}
         />
