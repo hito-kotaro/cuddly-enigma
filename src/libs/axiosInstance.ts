@@ -6,7 +6,7 @@ export const axiosInstance = axios.create({
   baseURL:
     process.env.NODE_ENV === 'production'
       ? 'https://hanamaru-hub.herokuapp.com/'
-      : 'http://localhost:8000',
+      : 'http://192.168.0.12:8000',
   headers: {
     'Content-Type': 'application/json',
   },
@@ -19,7 +19,7 @@ export const createAxiosTokenInstance = () => {
     baseURL:
       process.env.NODE_ENV === 'production'
         ? 'https://hanamaru-hub.herokuapp.com/'
-        : 'http://localhost:8000',
+        : 'http://192.168.0.12:8000',
     headers: {
       Authorization: `Bearer ${localStorage.getItem('token')}`,
       'Content-Type': 'application/json',

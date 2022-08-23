@@ -42,7 +42,11 @@ const DetailTemplate: VFC<Props> = (props) => {
   };
 
   // console.log(detail);
-
+  // console.log(detail);
+  console.log(detail.status);
+  console.log(detail.owner_id);
+  console.log(user.id);
+  console.log(isBank);
   return (
     <>
       <ConfirmModal
